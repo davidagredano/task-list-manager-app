@@ -1,7 +1,7 @@
 {
-  "name": "todo-list",
+  "name": "task-management-app",
   "version": "1.0.0",
-  "description": "A simple to-do list web application",
+  "description": "A task management web application",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
