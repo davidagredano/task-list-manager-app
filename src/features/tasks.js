@@ -1,12 +1,12 @@
 class Task {
-  constructor(id, title, description, dueDate, priority, project) {
+  constructor(id, title, description, dueDate, priority, projectId) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
     this.completed = false;
-    this.project = project;
+    this.projectId = projectId;
   }
 }
 
@@ -15,23 +15,29 @@ class TaskController {
     this.dataAccessor = dataAccessor;
   }
 
-  createTask(id, title, description, dueDate, priority, project) {
-    const task = new Task(id, title, description, dueDate, priority, project);
-    this.dataAccessor.createTask(task);
+  createTask(id, title, description, dueDate, priority, projectId) {
+    this.dataAccessor.createTask(
+      id,
+      title,
+      description,
+      dueDate,
+      priority,
+      projectId
+    );
   }
 
   toggleTaskCompletion(id) {
     this.dataAccessor.toggleTaskCompletion(id);
   }
 
-  updateTask(id, title, description, dueDate, priority, project) {
+  updateTask(id, title, description, dueDate, priority, projectId) {
     this.dataAccessor.updateTask(
       id,
       title,
       description,
       dueDate,
       priority,
-      project
+      projectId
     );
   }
 
