@@ -10,17 +10,16 @@ class ProjectController {
     this.dataAccessor = dataAccessor;
   }
 
-  createProject(name) {
-    const project = new Project(name);
-    dataAccessor.createProject(project);
+  createProject(id, name) {
+    this.dataAccessor.createProject(id, name);
   }
 
   updateProject(id, name) {
-    dataAccessor.updateProject(id, name);
+    this.dataAccessor.updateProject(id, name);
   }
 
   deleteProject(id) {
-    dataAccessor.deleteProject(id);
+    this.dataAccessor.deleteProject(id);
   }
 }
 
