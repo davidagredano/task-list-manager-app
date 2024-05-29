@@ -1,44 +1,42 @@
 class Task {
-  constructor(title, description, dueDate, priority) {
+  constructor(id, title, description, dueDate, priority, project) {
+    this.id = id;
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
     this.completed = false;
+    this.project = project;
   }
 }
 
 class TaskController {
-  #tasks;
-
   constructor() {
-    this.#tasks = [];
+    this.dataAccessor = new DataAccessor(); // Placeholder class
   }
 
-  createTask(title, description, dueDate, priority) {
-    const task = new Task(title, description, dueDate, priority);
-    this.#tasks.push(task);
+  createTask(id, title, description, dueDate, priority, project) {
+    const task = new Task(id, title, description, dueDate, priority, project);
+    this.dataAccessor.createTask(task);
   }
 
-  toggleTaskCompletion(index) {
-    const task = this.#tasks[index];
-    task.completed = !task.completed;
+  toggleTaskCompletion(id) {
+    this.dataAccessor.toggleTaskCompletion(id);
   }
 
-  updateTask(index, title, description, dueDate, priority) {
-    const task = this.#tasks[index];
-    task.title = title;
-    task.description = description;
-    task.dueDate = dueDate;
-    task.priority = priority;
+  updateTask(id, title, description, dueDate, priority, project) {
+    this.dataAccessor.updateTask(
+      id,
+      title,
+      description,
+      dueDate,
+      priority,
+      project
+    );
   }
 
-  deleteTask(index) {
-    this.#tasks.splice(index, 1);
-  }
-
-  getTasks() {
-    return this.#tasks;
+  deleteTask(id) {
+    this.dataAccessor.deleteTask(id);
   }
 }
 
