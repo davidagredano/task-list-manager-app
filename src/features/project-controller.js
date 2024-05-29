@@ -1,10 +1,3 @@
-class Project {
-  constructor(id, name) {
-    this.id = id;
-    this.name = name;
-  }
-}
-
 class ProjectController {
   constructor(dataAccessor) {
     this.dataAccessor = dataAccessor;
