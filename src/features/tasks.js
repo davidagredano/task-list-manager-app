@@ -11,8 +11,8 @@ class Task {
 }
 
 class TaskController {
-  constructor() {
-    this.dataAccessor = new DataAccessor(); // Placeholder class
+  constructor(dataAccessor) {
+    this.dataAccessor = dataAccessor;
   }
 
   createTask(id, title, description, dueDate, priority, project) {
