@@ -14,8 +14,8 @@ class TaskController {
     );
   }
 
-  toggleTaskCompletion(id) {
-    this.dataAccessor.toggleTaskCompletion(id);
+  toggleTaskCompletion(id, projectId) {
+    this.dataAccessor.toggleTaskCompletion(id, projectId);
   }
 
   updateTask(id, title, description, dueDate, priority, projectId) {
@@ -29,8 +29,8 @@ class TaskController {
     );
   }
 
-  deleteTask(id) {
-    this.dataAccessor.deleteTask(id);
+  deleteTask(id, projectId) {
+    this.dataAccessor.deleteTask(id, projectId);
   }
 }
 
