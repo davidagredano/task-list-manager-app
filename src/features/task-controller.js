@@ -18,14 +18,23 @@ class TaskController {
     this.dataAccessor.toggleTaskCompletion(id, projectId);
   }
 
-  updateTask(id, title, description, dueDate, priority, projectId) {
+  updateTask(
+    id,
+    projectId,
+    title,
+    description,
+    dueDate,
+    priority,
+    newProjectId
+  ) {
     this.dataAccessor.updateTask(
       id,
+      projectId,
       title,
       description,
       dueDate,
       priority,
-      projectId
+      newProjectId
     );
   }
 
