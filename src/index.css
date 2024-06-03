@@ -1,0 +1,18 @@
+:root {
+  --bg-color-primary: #fff;
+  --bg-color-secondary: #fcfaf8;
+}
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color-primary);
+}
