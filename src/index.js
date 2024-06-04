@@ -1,6 +1,6 @@
 import { ProjectList } from "./components";
+import { renderComponent } from "./components/utils";
 
 import "./index.css";
 
-const projectListEntryPoint = document.getElementById("project-list-component");
-projectListEntryPoint.appendChild(ProjectList());
+renderComponent("project-list-component", ProjectList());
