@@ -3,4 +3,10 @@ const renderComponent = (entryPointElementId, component) => {
   entryPoint.appendChild(component);
 };
 
-export { renderComponent };
+const refreshComponent = (entryPointElementId, component) => {
+  const entryPoint = document.getElementById(entryPointElementId);
+  entryPoint.innerHTML = "";
+  entryPoint.appendChild(component);
+};
+
+export { renderComponent, refreshComponent };

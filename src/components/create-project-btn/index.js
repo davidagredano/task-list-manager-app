@@ -4,7 +4,8 @@ const CreateProjectBtn = () => {
   createProjectBtn.innerHTML = "Create new project";
 
   createProjectBtn.addEventListener("click", () => {
-    alert("Create project button clicked");
+    const dialog = document.querySelector("#create-project-dialog");
+    dialog.showModal();
   });
 
   return createProjectBtn;
