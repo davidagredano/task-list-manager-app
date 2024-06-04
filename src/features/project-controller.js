@@ -14,6 +14,10 @@ class ProjectController {
   deleteProject(id) {
     this.dataAccessor.deleteProject(id);
   }
+
+  getProjects() {
+    return this.dataAccessor.getProjects();
+  }
 }
 
 export default ProjectController;
