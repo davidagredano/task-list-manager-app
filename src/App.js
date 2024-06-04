@@ -1,9 +1,5 @@
-import Sidebar from "./components/Sidebar";
-
 import "./App.css";
 
-const App = () => {
-  return Sidebar();
-};
+const App = () => {};
 
 export default App;

@@ -16,3 +16,11 @@ body {
   margin: 0;
   background-color: var(--bg-color-primary);
 }
+
+.sidebar__container {
+  width: 280px;
+  max-width: 420px;
+  min-width: 210px;
+  height: 100vh;
+  background-color: var(--bg-color-secondary);
+}
