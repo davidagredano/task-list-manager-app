@@ -1,3 +1,10 @@
 .project {
   flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project__header {
+  padding: 8px;
 }

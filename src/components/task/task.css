@@ -1,0 +1,16 @@
+.task {
+  padding: 8px;
+}
+
+.task__body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.task__checkbox {
+  align-self: flex-start;
+  width: 28px;
+  height: 28px;
+}
