@@ -1,3 +1,5 @@
+import { Task } from "..";
+
 import "./project.css";
 
 const Title = (projectData) => {
@@ -23,10 +25,7 @@ const TaskList = (projectData) => {
 
   const tasks = projectData.tasks;
   tasks.forEach((task) => {
-    const taskItem = document.createElement("article");
-    taskItem.className = "task";
-    taskItem.textContent = task.title;
-    taskList.appendChild(taskItem);
+    taskList.appendChild(Task(task));
   });
 
   return taskList;
