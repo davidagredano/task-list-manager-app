@@ -1,7 +1,7 @@
 import LocalStorageDataAccessor from "../../data/local-storage";
 import ProjectController from "../../features/project-controller";
-
 import { refreshComponent } from "../utils";
+
 import { ProjectListItems, ProjectBoard } from "..";
 
 const dataAccessor = new LocalStorageDataAccessor();
@@ -11,7 +11,7 @@ const closeDialog = () => {
   document.querySelector("#create-project-dialog").close();
 };
 
-const CreateProjectDialogTitle = () => {
+const Title = () => {
   const title = document.createElement("h3");
   title.classList.add("create-project-dialog__title");
   title.innerHTML = "Create new project";
@@ -19,18 +19,25 @@ const CreateProjectDialogTitle = () => {
   return title;
 };
 
-const CreateProjectDialogInput = () => {
+const Input = () => {
   const input = document.createElement("input");
-  input.id = "project-name-input";
   input.classList.add("create-project-dialog__input");
+  input.id = "project-name-input";
   input.placeholder = "Enter name";
 
   return input;
 };
 
-const CreateProjectDialogAcceptBtn = () => {
+const Div = (className) => {
+  const div = document.createElement("div");
+  div.classList.add(className);
+
+  return div;
+};
+
+const AcceptBtn = () => {
   const acceptBtn = document.createElement("button");
-  acceptBtn.classList.add("create-project-dialog__accept-btn");
+  acceptBtn.classList.add("create-project-dialog__btn");
   acceptBtn.innerHTML = "Add";
 
   acceptBtn.addEventListener("click", () => {
@@ -52,9 +59,9 @@ const CreateProjectDialogAcceptBtn = () => {
   return acceptBtn;
 };
 
-const CreateProjectDialogCancelBtn = () => {
+const CancelBtn = () => {
   const cancelBtn = document.createElement("button");
-  cancelBtn.classList.add("create-project-dialog__cancel-btn");
+  cancelBtn.classList.add("create-project-dialog__btn");
   cancelBtn.innerHTML = "Cancel";
 
   cancelBtn.addEventListener("click", closeDialog);
@@ -67,10 +74,12 @@ const CreateProjectDialog = () => {
   dialog.id = "create-project-dialog";
   dialog.classList.add("create-project-dialog");
 
-  dialog.appendChild(CreateProjectDialogTitle());
-  dialog.appendChild(CreateProjectDialogInput());
-  dialog.appendChild(CreateProjectDialogCancelBtn());
-  dialog.appendChild(CreateProjectDialogAcceptBtn());
+  const wrapper = dialog.appendChild(Div("create-project-dialog__wrapper"));
+  wrapper.appendChild(Title());
+  wrapper.appendChild(Input());
+  const btnGroup = wrapper.appendChild(Div("create-project-dialog__btn-group"));
+  btnGroup.appendChild(CancelBtn());
+  btnGroup.appendChild(AcceptBtn());
 
   return dialog;
 };
