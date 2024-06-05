@@ -2,7 +2,7 @@ import LocalStorageDataAccessor from "../../data/local-storage";
 import ProjectController from "../../features/project-controller";
 import { refreshComponent } from "../utils";
 
-import { ProjectListItems, ProjectBoard, Task } from "..";
+import { ProjectListItems, ProjectBoard, Task, CreateTaskForm } from "..";
 
 import "./project.css";
 
@@ -68,6 +68,7 @@ const Project = (projectData) => {
 
   project.appendChild(Header(projectData));
   project.appendChild(TaskList(projectData));
+  project.appendChild(CreateTaskForm(projectData.id));
 
   return project;
 };

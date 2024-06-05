@@ -4,6 +4,7 @@ import CreateProjectDialog from "./create-project-dialog";
 import ProjectBoard from "./project-board";
 import Project from "./project";
 import Task from "./task";
+import CreateTaskForm from "./create-task-form";
 
 export {
   ProjectListItems,
@@ -12,4 +13,5 @@ export {
   ProjectBoard,
   Project,
   Task,
+  CreateTaskForm,
 };
