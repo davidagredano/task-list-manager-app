@@ -1,4 +1,35 @@
+import LocalStorageDataAccessor from "../../data/local-storage";
+import TaskController from "../../features/task-controller";
+import { refreshComponent } from "../utils";
+
+import { ProjectBoard } from "..";
+
 import "./task.css";
+
+const dataAccessor = new LocalStorageDataAccessor();
+const taskController = new TaskController(dataAccessor);
+
+const DeleteTaskBtn = (id, projectId) => {
+  const button = document.createElement("button");
+  button.classList.add("task__delete-btn");
+  button.textContent = "Delete";
+
+  button.addEventListener("click", () => {
+    taskController.deleteTask(id, projectId);
+    refreshComponent("project-board-component", ProjectBoard());
+  });
+
+  return button;
+};
+
+const Actions = (task) => {
+  const div = document.createElement("div");
+  div.classList.add("task__actions");
+
+  div.appendChild(DeleteTaskBtn(task.id, task.projectId));
+
+  return div;
+};
 
 const Description = (description) => {
   const p = document.createElement("p");
@@ -40,6 +71,7 @@ const Body = (task) => {
 
   div.appendChild(Checkbox(task.completed));
   div.appendChild(Content(task));
+  div.appendChild(Actions(task));
 
   return div;
 };
