@@ -1,0 +1,22 @@
+.create-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+}
+
+.create-task-form__input {
+  height: 28px;
+  padding: 0 6px;
+}
+
+.create-task-form__btn-group {
+  display: flex;
+  gap: 4px;
+}
+
+.create-task-form__btn {
+  height: 28px;
+  cursor: pointer;
+  flex: 1;
+}

@@ -4,6 +4,8 @@ import { refreshComponent } from "../utils";
 
 import { ProjectBoard } from "..";
 
+import "./create-task-form.css";
+
 const dataAccessor = new LocalStorageDataAccessor();
 const taskController = new TaskController(dataAccessor);
 
