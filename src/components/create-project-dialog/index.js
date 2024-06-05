@@ -40,7 +40,7 @@ const CreateProjectDialogAcceptBtn = () => {
     if (projectName) {
       const id = new Date().getTime().toString();
       projectController.createProject(id, projectName);
-      refreshComponent("project-list-component", ProjectList());
+      refreshComponent("project-list-component", ProjectListItems());
       closeDialog();
       input.value = "";
     } else {
