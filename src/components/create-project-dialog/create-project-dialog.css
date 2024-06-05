@@ -1,0 +1,31 @@
+.create-project-dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.create-project-dialog__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.create-project-dialog__input {
+  height: 28px;
+  padding: 0 6px;
+}
+
+.create-project-dialog__btn-group {
+  display: flex;
+  gap: 4px;
+}
+
+.create-project-dialog__btn {
+  height: 28px;
+  cursor: pointer;
+  flex: 1;
+}

@@ -4,6 +4,8 @@ import { refreshComponent } from "../utils";
 
 import { ProjectListItems, ProjectBoard } from "..";
 
+import "./create-project-dialog.css";
+
 const dataAccessor = new LocalStorageDataAccessor();
 const projectController = new ProjectController(dataAccessor);
 
