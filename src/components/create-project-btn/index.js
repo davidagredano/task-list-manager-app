@@ -1,3 +1,5 @@
+import "./create-project-btn.css";
+
 const CreateProjectBtn = () => {
   const createProjectBtn = document.createElement("button");
   createProjectBtn.classList.add("create-project-btn");
