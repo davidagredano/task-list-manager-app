@@ -29,13 +29,23 @@ ul {
   padding: 0;
 }
 
+.body__container {
+  display: flex;
+}
+
 .sidebar__container {
-  width: 280px;
+  flex: 0 1 280px;
   max-width: 420px;
   min-width: 210px;
   min-height: 100vh;
   padding: 100px 20px;
   background-color: var(--bg-color-secondary);
+}
+
+.project-board__container {
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 100px 20px;
 }
 
 .sidebar__nav {
