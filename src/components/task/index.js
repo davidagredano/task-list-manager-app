@@ -57,10 +57,15 @@ const Content = (task) => {
   return div;
 };
 
-const Checkbox = (isCompleted) => {
+const Checkbox = (task) => {
   const button = document.createElement("button");
   button.className = "task__checkbox";
-  button.textContent = isCompleted ? "X" : "";
+  button.textContent = task.completed ? "V" : "";
+
+  button.addEventListener("click", () => {
+    taskController.toggleTaskCompletion(task.id, task.projectId);
+    refreshComponent("project-board-component", ProjectBoard());
+  });
 
   return button;
 };
@@ -69,7 +74,7 @@ const Body = (task) => {
   const div = document.createElement("div");
   div.className = "task__body";
 
-  div.appendChild(Checkbox(task.completed));
+  div.appendChild(Checkbox(task));
   div.appendChild(Content(task));
   div.appendChild(Actions(task));
 
