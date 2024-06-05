@@ -1,3 +1,5 @@
+import "./project.css";
+
 const Title = (projectData) => {
   const title = document.createElement("h2");
   title.classList.add("project__title");

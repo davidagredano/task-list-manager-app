@@ -3,6 +3,8 @@ import { Project } from "..";
 import LocalStorageDataAccessor from "../../data/local-storage";
 import ProjectController from "../../features/project-controller";
 
+import "./project-board.css";
+
 const dataAccessor = new LocalStorageDataAccessor();
 const projectController = new ProjectController(dataAccessor);
 
