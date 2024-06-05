@@ -74,7 +74,7 @@ class LocalStorageDataAccessor {
   }
 
   setDefaultProject() {
-    const defaultProject = new Project("default", "No Project");
+    const defaultProject = new Project("default", "My tasks");
     localStorage.setItem("projects", JSON.stringify([defaultProject]));
   }
 
