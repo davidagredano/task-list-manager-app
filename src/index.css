@@ -13,14 +13,33 @@ html {
 }
 
 body {
+  min-height: 100vh;
   margin: 0;
+  font-family: sans-serif;
   background-color: var(--bg-color-primary);
+}
+
+h2 {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .sidebar__container {
   width: 280px;
   max-width: 420px;
   min-width: 210px;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 100px 20px;
   background-color: var(--bg-color-secondary);
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

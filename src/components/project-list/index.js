@@ -1,6 +1,8 @@
 import LocalStorageDataAccessor from "../../data/local-storage";
 import ProjectController from "../../features/project-controller";
 
+import "./project-list.css";
+
 const dataAccessor = new LocalStorageDataAccessor();
 const projectController = new ProjectController(dataAccessor);
 
