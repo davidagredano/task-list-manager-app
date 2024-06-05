@@ -1,7 +1,7 @@
-import { Project } from "..";
-
 import LocalStorageDataAccessor from "../../data/local-storage";
 import ProjectController from "../../features/project-controller";
+
+import { Project } from "..";
 
 import "./project-board.css";
 
