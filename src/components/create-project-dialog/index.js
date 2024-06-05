@@ -2,7 +2,7 @@ import LocalStorageDataAccessor from "../../data/local-storage";
 import ProjectController from "../../features/project-controller";
 
 import { refreshComponent } from "../utils";
-import { ProjectList } from "..";
+import { ProjectListItems } from "..";
 
 const dataAccessor = new LocalStorageDataAccessor();
 const projectController = new ProjectController(dataAccessor);
