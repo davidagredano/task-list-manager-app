@@ -2,7 +2,7 @@ import LocalStorageDataAccessor from "../../data/local-storage";
 import ProjectController from "../../features/project-controller";
 
 import { refreshComponent } from "../utils";
-import { ProjectListItems } from "..";
+import { ProjectListItems, ProjectBoard } from "..";
 
 const dataAccessor = new LocalStorageDataAccessor();
 const projectController = new ProjectController(dataAccessor);
@@ -41,6 +41,7 @@ const CreateProjectDialogAcceptBtn = () => {
       const id = new Date().getTime().toString();
       projectController.createProject(id, projectName);
       refreshComponent("project-list-component", ProjectListItems());
+      refreshComponent("project-board-component", ProjectBoard());
       closeDialog();
       input.value = "";
     } else {
