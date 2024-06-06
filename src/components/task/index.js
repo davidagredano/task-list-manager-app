@@ -1,6 +1,6 @@
 import LocalStorageDataAccessor from "../../data/local-storage";
 import TaskController from "../../features/task-controller";
-import { refreshComponent } from "../utils";
+import { updateComponent } from "../utils";
 
 import { ProjectBoard } from "..";
 
@@ -16,7 +16,7 @@ const DeleteTaskBtn = (id, projectId) => {
 
   button.addEventListener("click", () => {
     taskController.deleteTask(id, projectId);
-    refreshComponent("project-board-component", ProjectBoard());
+    updateComponent("project-board-component", ProjectBoard());
   });
 
   return button;
@@ -64,7 +64,7 @@ const Checkbox = (task) => {
 
   button.addEventListener("click", () => {
     taskController.toggleTaskCompletion(task.id, task.projectId);
-    refreshComponent("project-board-component", ProjectBoard());
+    updateComponent("project-board-component", ProjectBoard());
   });
 
   return button;

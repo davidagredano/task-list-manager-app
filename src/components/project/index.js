@@ -1,6 +1,6 @@
 import LocalStorageDataAccessor from "../../data/local-storage";
 import ProjectController from "../../features/project-controller";
-import { refreshComponent } from "../utils";
+import { updateComponent } from "../utils";
 
 import { ProjectListItems, ProjectBoard, Task, CreateTaskForm } from "..";
 
@@ -24,8 +24,8 @@ const DeleteProjectBtn = (id) => {
 
   button.addEventListener("click", () => {
     projectController.deleteProject(id);
-    refreshComponent("project-list-component", ProjectListItems());
-    refreshComponent("project-board-component", ProjectBoard());
+    updateComponent("project-list-component", ProjectListItems());
+    updateComponent("project-board-component", ProjectBoard());
   });
 
   return button;

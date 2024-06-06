@@ -1,5 +1,5 @@
 import LocalStorageDataAccessor from "./data/local-storage";
-import { renderComponent } from "./components/utils";
+import { initComponent } from "./components/utils";
 
 import {
   ProjectListItems,
@@ -16,7 +16,7 @@ if (!dataAccessor.getProjects()) {
   dataAccessor.setDefaultProject();
 }
 
-renderComponent("project-list-component", ProjectListItems());
-renderComponent("create-project-btn-component", CreateProjectBtn());
+initComponent("project-list-component", ProjectListItems());
+initComponent("create-project-btn-component", CreateProjectBtn());
 document.body.appendChild(CreateProjectDialog());
-renderComponent("project-board-component", ProjectBoard());
+initComponent("project-board-component", ProjectBoard());

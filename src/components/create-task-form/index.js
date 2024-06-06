@@ -1,6 +1,6 @@
 import LocalStorageDataAccessor from "../../data/local-storage";
 import TaskController from "../../features/task-controller";
-import { refreshComponent } from "../utils";
+import { updateComponent } from "../utils";
 
 import { ProjectBoard } from "..";
 
@@ -46,7 +46,7 @@ const AcceptBtn = (projectId) => {
     if (title) {
       const id = new Date().getTime().toString();
       taskController.createTask(id, title, description, null, null, projectId);
-      refreshComponent("project-board-component", ProjectBoard());
+      updateComponent("project-board-component", ProjectBoard());
     } else {
       alert("Task title is required");
     }
