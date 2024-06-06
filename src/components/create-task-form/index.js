@@ -1,3 +1,4 @@
+import createTask from "../../factories/task-factory";
 import LocalStorageService from "../../services/local-storage-service";
 import TaskService from "../../services/task-service";
 import { updateComponent } from "../../state/state-manager";
@@ -38,14 +39,14 @@ const Button = (text, onClick) => {
 
 const AcceptBtn = (projectId) => {
   const acceptBtn = Button("Add", () => {
-    const titleId = "task-title-input-" + projectId;
-    const title = document.getElementById(titleId).value;
-    const descriptionId = "task-description-input-" + projectId;
-    const description = document.getElementById(descriptionId).value;
+    const titleInputId = "task-title-input-" + projectId;
+    const title = document.getElementById(titleInputId).value;
+    const descriptionInputId = "task-description-input-" + projectId;
+    const description = document.getElementById(descriptionInputId).value;
 
     if (title) {
-      const id = new Date().getTime().toString();
-      taskService.createTask(id, title, description, null, null, projectId);
+      const task = createTask(title, description, null, null, projectId);
+      taskService.createTask(task);
       updateComponent("project-board-component", ProjectBoard());
     } else {
       alert("Task title is required");

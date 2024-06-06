@@ -3,43 +3,20 @@ class TaskService {
     this.dataAccessService = dataAccessService;
   }
 
-  createTask(id, title, description, dueDate, priority, projectId) {
-    this.dataAccessService.createTask(
-      id,
-      title,
-      description,
-      dueDate,
-      priority,
-      projectId
-    );
+  createTask(task) {
+    this.dataAccessService.createTask(task);
   }
 
-  toggleTaskCompletion(id, projectId) {
-    this.dataAccessService.toggleTaskCompletion(id, projectId);
+  toggleTaskCompletion(task) {
+    this.dataAccessService.toggleTaskCompletion(task);
   }
 
-  updateTask(
-    id,
-    projectId,
-    title,
-    description,
-    dueDate,
-    priority,
-    newProjectId
-  ) {
-    this.dataAccessService.updateTask(
-      id,
-      projectId,
-      title,
-      description,
-      dueDate,
-      priority,
-      newProjectId
-    );
+  updateTask(task, newProjectId) {
+    this.dataAccessService.updateTask(task, newProjectId);
   }
 
-  deleteTask(id, projectId) {
-    this.dataAccessService.deleteTask(id, projectId);
+  deleteTask(task) {
+    this.dataAccessService.deleteTask(task);
   }
 }
 

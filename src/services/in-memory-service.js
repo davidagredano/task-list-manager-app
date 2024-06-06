@@ -11,67 +11,59 @@ class InMemoryService {
     };
   }
 
-  createTask(id, title, description, dueDate, priority, projectId) {
-    const task = createTask(title, description, dueDate, priority, projectId);
-    if (projectId) {
-      const project = this.getItemById(this.getProjects(), projectId);
+  createTask(task) {
+    if (task.projectId) {
+      const project = this.getItemById(this.getProjects(), task.projectId);
       project.tasks.push(task);
     } else {
       this.getTasks().push(task);
     }
   }
 
-  toggleTaskCompletion(id, projectId) {
-    if (projectId) {
-      const project = this.getItemById(this.getProjects(), projectId);
-      const task = this.getItemById(project.tasks, id);
-      task.completed = !task.completed;
+  toggleTaskCompletion(task) {
+    if (task.projectId) {
+      const project = this.getItemById(this.getProjects(), task.projectId);
+      const targetTask = this.getItemById(project.tasks, task.id);
+      targetTask.completed = !targetTask.completed;
     } else {
-      const task = this.getItemById(this.getTasks(), id);
-      task.completed = !task.completed;
+      const targetTask = this.getItemById(this.getTasks(), task.id);
+      targetTask.completed = !targetTask.completed;
     }
   }
 
-  updateTask(id, title, description, dueDate, priority, projectId) {
-    if (projectId) {
-      const project = this.getItemById(this.getProjects(), projectId);
-      const task = this.getItemById(project.tasks, id);
-      task.title = title || task.title;
-      task.description = description || task.description;
-      task.dueDate = dueDate || task.dueDate;
-      task.priority = priority || task.priority;
+  updateTask(task, newProjectId) {
+    // TODO: Handle moving tasks between projects
+    if (task.projectId) {
+      const projects = this.getProjects();
+      const project = this.getItemById(projects, task.projectId);
+      let targetTask = this.getItemById(project.tasks, id);
+      targetTask = task;
     } else {
-      const task = this.getItemById(this.getTasks(), id);
-      task.title = title;
-      task.description = description;
-      task.dueDate = dueDate;
-      task.priority = priority;
+      let targetTask = this.getItemById(this.getTasks(), id);
+      targetTask = task;
     }
   }
 
-  deleteTask(id, projectId) {
-    if (projectId) {
-      const project = this.getItemById(this.getProjects(), projectId);
-      project.tasks = project.tasks.filter((task) => task.id !== id);
+  deleteTask(task) {
+    if (task.projectId) {
+      const project = this.getItemById(this.getProjects(), task.projectId);
+      this.deleteItemById(project.tasks, task.id);
     } else {
-      this.#data.tasks = this.getTasks().filter((task) => task.id !== id);
+      this.#data.tasks = this.deleteItemById(this.getTasks(), task.id);
     }
   }
 
-  createProject(id, name) {
-    const project = createProject(name);
+  createProject(project) {
     this.getProjects().push(project);
   }
 
-  updateProject(id, name) {
-    const project = this.getItemById(this.getProjects(), id);
-    project.name = name || project.name;
+  updateProject(project) {
+    let targetProject = this.getItemById(this.getProjects(), project.id);
+    targetProject = project;
   }
 
-  deleteProject(id) {
-    this.#data.projects = this.getProjects().filter(
-      (project) => project.id !== id
-    );
+  deleteProject(project) {
+    this.#data.projects = this.deleteItemById(this.getProjects(), project.id);
   }
 
   getData() {
@@ -86,8 +78,12 @@ class InMemoryService {
     return this.#data.tasks;
   }
 
-  getItemById(arrayOfObjects, id) {
-    return arrayOfObjects.find((item) => item.id === id);
+  getItemById(arrOfObj, id) {
+    return arrOfObj.find((item) => item.id === id);
+  }
+
+  deleteItemById(arrOfObj, id) {
+    return arrOfObj.filter((item) => item.id !== id);
   }
 }
 

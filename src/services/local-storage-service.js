@@ -1,75 +1,63 @@
-import createTask from "../factories/task-factory";
 import createProject from "../factories/project-factory";
 
 class LocalStorageService {
   constructor() {}
 
-  createTask(id, title, description, dueDate, priority, projectId) {
-    const task = createTask(title, description, dueDate, priority, projectId);
+  createTask(task) {
     const projects = this.getProjects();
-    const project = this.getItemById(projects, projectId || "default");
+    const project = this.getItemById(projects, task.projectId);
     project.tasks.push(task);
     this.saveProjects(projects);
   }
 
-  toggleTaskCompletion(id, projectId) {
+  toggleTaskCompletion(task) {
     const projects = this.getProjects();
-    const project = this.getItemById(projects, projectId || "default");
-    const task = this.getItemById(project.tasks, id);
-    task.completed = !task.completed;
+    const project = this.getItemById(projects, task.projectId);
+    const targetTask = this.getItemById(project.tasks, task.id);
+    targetTask.completed = !targetTask.completed;
     this.saveProjects(projects);
   }
 
-  updateTask(
-    id,
-    projectId,
-    title,
-    description,
-    dueDate,
-    priority,
-    newProjectId
-  ) {
+  updateTask(task, newProjectId) {
     const projects = this.getProjects();
     const project = this.getItemById(projects, projectId || "default");
-    const task = this.getItemById(project.tasks, id);
-    task.title = title || task.title;
-    task.description = description || task.description;
-    task.dueDate = dueDate || task.dueDate;
-    task.priority = priority || task.priority;
 
     if (newProjectId) {
       const oldProject = project;
       const newProject = this.getItemById(projects, newProjectId);
       oldProject.tasks = this.deleteItemById(project.tasks, id);
       newProject.tasks.push(task);
+    } else {
+      let targetTask = this.getItemById(project.tasks, id);
+      targetTask = task;
     }
+
     this.saveProjects(projects);
   }
 
-  deleteTask(id, projectId) {
+  deleteTask(task) {
     const projects = this.getProjects();
-    const project = this.getItemById(projects, projectId || "default");
-    project.tasks = this.deleteItemById(project.tasks, id);
+    const project = this.getItemById(projects, task.projectId);
+    project.tasks = this.deleteItemById(project.tasks, task.id);
     this.saveProjects(projects);
   }
 
-  createProject(id, name) {
-    const project = createProject(name);
+  createProject(project) {
     const projects = this.getProjects();
     projects.push(project);
     this.saveProjects(projects);
   }
 
-  updateProject(id, name) {
+  updateProject(project) {
     const projects = this.getProjects();
-    const project = this.getProjectById(projects, id);
-    project.name = name || project.name;
+    targetProject = this.getProjectById(projects, project.id);
+    targetProject = project;
     this.saveProjects(projects);
   }
 
-  deleteProject(id) {
+  deleteProject(project) {
     const projects = this.getProjects();
-    const filteredProjects = this.deleteItemById(projects, id);
+    const filteredProjects = this.deleteItemById(projects, project.id);
     this.saveProjects(filteredProjects);
   }
 

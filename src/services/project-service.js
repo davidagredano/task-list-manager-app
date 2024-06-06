@@ -3,16 +3,16 @@ class ProjectService {
     this.dataAccessService = dataAccessService;
   }
 
-  createProject(id, name) {
-    this.dataAccessService.createProject(id, name);
+  createProject(project) {
+    this.dataAccessService.createProject(project);
   }
 
-  updateProject(id, name) {
-    this.dataAccessService.updateProject(id, name);
+  updateProject(project) {
+    this.dataAccessService.updateProject(project);
   }
 
-  deleteProject(id) {
-    this.dataAccessService.deleteProject(id);
+  deleteProject(project) {
+    this.dataAccessService.deleteProject(project);
   }
 
   getProjects() {

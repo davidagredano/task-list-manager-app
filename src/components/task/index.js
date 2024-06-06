@@ -9,13 +9,13 @@ import "./task.css";
 const localStorageService = new LocalStorageService();
 const taskService = new TaskService(localStorageService);
 
-const DeleteTaskBtn = (id, projectId) => {
+const DeleteTaskBtn = (task) => {
   const button = document.createElement("button");
   button.classList.add("task__delete-btn");
   button.textContent = "Delete";
 
   button.addEventListener("click", () => {
-    taskService.deleteTask(id, projectId);
+    taskService.deleteTask(task);
     updateComponent("project-board-component", ProjectBoard());
   });
 
@@ -26,23 +26,23 @@ const Actions = (task) => {
   const div = document.createElement("div");
   div.classList.add("task__actions");
 
-  div.appendChild(DeleteTaskBtn(task.id, task.projectId));
+  div.appendChild(DeleteTaskBtn(task));
 
   return div;
 };
 
-const Description = (description) => {
+const Description = (task) => {
   const p = document.createElement("p");
   p.className = "task__description";
-  p.textContent = description;
+  p.textContent = task.description;
 
   return p;
 };
 
-const Title = (title) => {
+const Title = (task) => {
   const h3 = document.createElement("h3");
   h3.className = "task__title";
-  h3.textContent = title;
+  h3.textContent = task.title;
 
   return h3;
 };
@@ -51,8 +51,8 @@ const Content = (task) => {
   const div = document.createElement("div");
   div.className = "task__content";
 
-  div.appendChild(Title(task.title));
-  div.appendChild(Description(task.description));
+  div.appendChild(Title(task));
+  div.appendChild(Description(task));
 
   return div;
 };
@@ -63,7 +63,7 @@ const Checkbox = (task) => {
   button.textContent = task.completed ? "V" : "";
 
   button.addEventListener("click", () => {
-    taskService.toggleTaskCompletion(task.id, task.projectId);
+    taskService.toggleTaskCompletion(task);
     updateComponent("project-board-component", ProjectBoard());
   });
 

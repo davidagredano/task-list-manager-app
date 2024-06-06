@@ -1,3 +1,4 @@
+import createProject from "../../factories/project-factory";
 import LocalStorageService from "../../services/local-storage-service";
 import ProjectService from "../../services/project-service";
 import { updateComponent } from "../../state/state-manager";
@@ -47,8 +48,8 @@ const AcceptBtn = () => {
     const projectName = input.value;
 
     if (projectName) {
-      const id = new Date().getTime().toString();
-      projectService.createProject(id, projectName);
+      const project = createProject(projectName);
+      projectService.createProject(project);
       updateComponent("project-list-component", ProjectListItems());
       updateComponent("project-board-component", ProjectBoard());
       closeDialog();
