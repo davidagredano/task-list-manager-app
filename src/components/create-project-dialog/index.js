@@ -1,6 +1,6 @@
 import LocalStorageService from "../../services/local-storage-service";
 import ProjectService from "../../services/project-service";
-import { updateComponent } from "../utils";
+import { updateComponent } from "../../state/state-manager";
 
 import { ProjectListItems, ProjectBoard } from "..";
 

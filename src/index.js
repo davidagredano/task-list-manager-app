@@ -1,5 +1,5 @@
 import LocalStorageService from "./services/local-storage-service";
-import { initComponent } from "./components/utils";
+import { initComponent } from "./state/state-manager";
 
 import {
   ProjectListItems,
