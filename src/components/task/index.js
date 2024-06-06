@@ -1,13 +1,13 @@
-import LocalStorageDataAccessor from "../../data/local-storage";
-import TaskController from "../../features/task-controller";
+import LocalStorageService from "../../services/local-storage-service";
+import TaskService from "../../services/task-service";
 import { updateComponent } from "../utils";
 
 import { ProjectBoard } from "..";
 
 import "./task.css";
 
-const dataAccessor = new LocalStorageDataAccessor();
-const taskController = new TaskController(dataAccessor);
+const localStorageService = new LocalStorageService();
+const taskService = new TaskService(localStorageService);
 
 const DeleteTaskBtn = (id, projectId) => {
   const button = document.createElement("button");
@@ -15,7 +15,7 @@ const DeleteTaskBtn = (id, projectId) => {
   button.textContent = "Delete";
 
   button.addEventListener("click", () => {
-    taskController.deleteTask(id, projectId);
+    taskService.deleteTask(id, projectId);
     updateComponent("project-board-component", ProjectBoard());
   });
 
@@ -63,7 +63,7 @@ const Checkbox = (task) => {
   button.textContent = task.completed ? "V" : "";
 
   button.addEventListener("click", () => {
-    taskController.toggleTaskCompletion(task.id, task.projectId);
+    taskService.toggleTaskCompletion(task.id, task.projectId);
     updateComponent("project-board-component", ProjectBoard());
   });
 

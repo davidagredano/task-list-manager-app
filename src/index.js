@@ -1,4 +1,4 @@
-import LocalStorageDataAccessor from "./data/local-storage";
+import LocalStorageService from "./services/local-storage-service";
 import { initComponent } from "./components/utils";
 
 import {
@@ -10,10 +10,10 @@ import {
 
 import "./index.css";
 
-const dataAccessor = new LocalStorageDataAccessor();
+const localStorageService = new LocalStorageService();
 
-if (!dataAccessor.getProjects()) {
-  dataAccessor.setDefaultProject();
+if (!localStorageService.getProjects()) {
+  localStorageService.setDefaultProject();
 }
 
 initComponent("project-list-component", ProjectListItems());

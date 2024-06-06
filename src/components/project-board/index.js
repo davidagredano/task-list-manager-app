@@ -1,18 +1,18 @@
-import LocalStorageDataAccessor from "../../data/local-storage";
-import ProjectController from "../../features/project-controller";
+import LocalStorageService from "../../services/local-storage-service";
+import ProjectService from "../../services/project-service";
 
 import { Project } from "..";
 
 import "./project-board.css";
 
-const dataAccessor = new LocalStorageDataAccessor();
-const projectController = new ProjectController(dataAccessor);
+const localStorageService = new LocalStorageService();
+const projectService = new ProjectService(localStorageService);
 
 const ProjectBoard = () => {
   const projectBoard = document.createElement("main");
   projectBoard.classList.add("project-board");
 
-  projectController.getProjects().forEach((project) => {
+  projectService.getProjects().forEach((project) => {
     projectBoard.appendChild(Project(project));
   });
 

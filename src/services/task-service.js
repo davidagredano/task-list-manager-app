@@ -1,10 +1,10 @@
-class TaskController {
-  constructor(dataAccessor) {
-    this.dataAccessor = dataAccessor;
+class TaskService {
+  constructor(dataAccessService) {
+    this.dataAccessService = dataAccessService;
   }
 
   createTask(id, title, description, dueDate, priority, projectId) {
-    this.dataAccessor.createTask(
+    this.dataAccessService.createTask(
       id,
       title,
       description,
@@ -15,7 +15,7 @@ class TaskController {
   }
 
   toggleTaskCompletion(id, projectId) {
-    this.dataAccessor.toggleTaskCompletion(id, projectId);
+    this.dataAccessService.toggleTaskCompletion(id, projectId);
   }
 
   updateTask(
@@ -27,7 +27,7 @@ class TaskController {
     priority,
     newProjectId
   ) {
-    this.dataAccessor.updateTask(
+    this.dataAccessService.updateTask(
       id,
       projectId,
       title,
@@ -39,8 +39,8 @@ class TaskController {
   }
 
   deleteTask(id, projectId) {
-    this.dataAccessor.deleteTask(id, projectId);
+    this.dataAccessService.deleteTask(id, projectId);
   }
 }
 
-export default TaskController;
+export default TaskService;

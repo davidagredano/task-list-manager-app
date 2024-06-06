@@ -1,13 +1,13 @@
-import LocalStorageDataAccessor from "../../data/local-storage";
-import ProjectController from "../../features/project-controller";
+import LocalStorageService from "../../services/local-storage-service";
+import ProjectService from "../../services/project-service";
 
-const dataAccessor = new LocalStorageDataAccessor();
-const projectController = new ProjectController(dataAccessor);
+const localStorageService = new LocalStorageService();
+const projectService = new ProjectService(localStorageService);
 
 const ProjectListItems = () => {
   const fragment = document.createDocumentFragment();
 
-  projectController.getProjects().forEach((project) => {
+  projectService.getProjects().forEach((project) => {
     const projectItem = document.createElement("li");
     projectItem.classList.add("project-list__item");
     projectItem.innerHTML = project.name;

@@ -1,13 +1,13 @@
-import LocalStorageDataAccessor from "../../data/local-storage";
-import TaskController from "../../features/task-controller";
+import LocalStorageService from "../../services/local-storage-service";
+import TaskService from "../../services/task-service";
 import { updateComponent } from "../utils";
 
 import { ProjectBoard } from "..";
 
 import "./create-task-form.css";
 
-const dataAccessor = new LocalStorageDataAccessor();
-const taskController = new TaskController(dataAccessor);
+const localStorageService = new LocalStorageService();
+const taskService = new TaskService(localStorageService);
 
 const Input = (id, placeholder) => {
   const input = document.createElement("input");
@@ -45,7 +45,7 @@ const AcceptBtn = (projectId) => {
 
     if (title) {
       const id = new Date().getTime().toString();
-      taskController.createTask(id, title, description, null, null, projectId);
+      taskService.createTask(id, title, description, null, null, projectId);
       updateComponent("project-board-component", ProjectBoard());
     } else {
       alert("Task title is required");

@@ -1,13 +1,13 @@
-import LocalStorageDataAccessor from "../../data/local-storage";
-import ProjectController from "../../features/project-controller";
+import LocalStorageService from "../../services/local-storage-service";
+import ProjectService from "../../services/project-service";
 import { updateComponent } from "../utils";
 
 import { ProjectListItems, ProjectBoard, Task, CreateTaskForm } from "..";
 
 import "./project.css";
 
-const dataAccessor = new LocalStorageDataAccessor();
-const projectController = new ProjectController(dataAccessor);
+const localStorageService = new LocalStorageService();
+const projectService = new ProjectService(localStorageService);
 
 const Title = (projectData) => {
   const title = document.createElement("h2");
@@ -23,7 +23,7 @@ const DeleteProjectBtn = (id) => {
   button.textContent = "Delete";
 
   button.addEventListener("click", () => {
-    projectController.deleteProject(id);
+    projectService.deleteProject(id);
     updateComponent("project-list-component", ProjectListItems());
     updateComponent("project-board-component", ProjectBoard());
   });

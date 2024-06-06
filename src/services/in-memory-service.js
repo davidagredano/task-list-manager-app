@@ -1,7 +1,7 @@
 import Task from "../features/task.js";
 import Project from "../features/project.js";
 
-class InMemoryArrayDataAccessor {
+class InMemoryService {
   #data;
 
   constructor() {
@@ -91,4 +91,4 @@ class InMemoryArrayDataAccessor {
   }
 }
 
-export default InMemoryArrayDataAccessor;
+export default InMemoryService;

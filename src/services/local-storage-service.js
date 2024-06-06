@@ -1,7 +1,7 @@
-import Task from "../features/task.js";
-import Project from "../features/project.js";
+import Task from "../models/task.js";
+import Project from "../models/project.js";
 
-class LocalStorageDataAccessor {
+class LocalStorageService {
   constructor() {}
 
   createTask(id, title, description, dueDate, priority, projectId) {
@@ -103,4 +103,4 @@ class LocalStorageDataAccessor {
   }
 }
 
-export default LocalStorageDataAccessor;
+export default LocalStorageService;
