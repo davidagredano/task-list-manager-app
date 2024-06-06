@@ -1,5 +1,5 @@
-import Task from "../features/task.js";
-import Project from "../features/project.js";
+import createTask from "../factories/task-factory";
+import createProject from "../factories/project-factory";
 
 class InMemoryService {
   #data;
@@ -12,7 +12,7 @@ class InMemoryService {
   }
 
   createTask(id, title, description, dueDate, priority, projectId) {
-    const task = new Task(id, title, description, dueDate, priority, projectId);
+    const task = createTask(title, description, dueDate, priority, projectId);
     if (projectId) {
       const project = this.getItemById(this.getProjects(), projectId);
       project.tasks.push(task);
@@ -59,7 +59,7 @@ class InMemoryService {
   }
 
   createProject(id, name) {
-    const project = new Project(id, name);
+    const project = createProject(name);
     this.getProjects().push(project);
   }
 

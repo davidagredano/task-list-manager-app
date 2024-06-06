@@ -1,11 +1,11 @@
-import Task from "../models/task.js";
-import Project from "../models/project.js";
+import createTask from "../factories/task-factory";
+import createProject from "../factories/project-factory";
 
 class LocalStorageService {
   constructor() {}
 
   createTask(id, title, description, dueDate, priority, projectId) {
-    const task = new Task(id, title, description, dueDate, priority, projectId);
+    const task = createTask(title, description, dueDate, priority, projectId);
     const projects = this.getProjects();
     const project = this.getItemById(projects, projectId || "default");
     project.tasks.push(task);
@@ -54,7 +54,7 @@ class LocalStorageService {
   }
 
   createProject(id, name) {
-    const project = new Project(id, name);
+    const project = createProject(name);
     const projects = this.getProjects();
     projects.push(project);
     this.saveProjects(projects);
@@ -74,7 +74,7 @@ class LocalStorageService {
   }
 
   setDefaultProject() {
-    const defaultProject = new Project("default", "My tasks");
+    const defaultProject = createProject("default", "My tasks");
     localStorage.setItem("projects", JSON.stringify([defaultProject]));
   }
 
