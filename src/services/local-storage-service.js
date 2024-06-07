@@ -50,7 +50,7 @@ class LocalStorageService {
 
   updateProject(project) {
     const projects = this.getProjects();
-    targetProject = this.getProjectById(projects, project.id);
+    targetProject = this.getItemById(projects, project.id);
     targetProject = project;
     this.saveProjects(projects);
   }
@@ -65,16 +65,12 @@ class LocalStorageService {
     const defaultProject = createProject("My tasks");
     localStorage.setItem("projects", JSON.stringify([defaultProject]));
   }
-  
+
   getProjects() {
     if (localStorage.getItem("projects") === null) {
       this.setDefaultProject();
     }
     return JSON.parse(localStorage.getItem("projects"));
-  }
-
-  getProjectById(projects, id) {
-    return projects.find((project) => project.id === id);
   }
 
   saveProjects(projects) {
