@@ -1,14 +1,9 @@
 import createProject from "../../factories/project-factory";
-import LocalStorageService from "../../services/local-storage-service";
-import ProjectService from "../../services/project-service";
-import { updateComponent } from "../../state/state-manager";
-
-import { ProjectListItems, ProjectBoard } from "..";
+import StateManager from "../../state/state-manager";
 
 import "./create-project-dialog.css";
 
-const localStorageService = new LocalStorageService();
-const projectService = new ProjectService(localStorageService);
+const stateManager = new StateManager();
 
 const closeDialog = () => {
   document.querySelector("#create-project-dialog").close();
@@ -49,9 +44,7 @@ const AcceptBtn = () => {
 
     if (projectName) {
       const project = createProject(projectName);
-      projectService.createProject(project);
-      updateComponent("project-list-component", ProjectListItems());
-      updateComponent("project-board-component", ProjectBoard());
+      stateManager.createProject(project);
       closeDialog();
       input.value = "";
     } else {

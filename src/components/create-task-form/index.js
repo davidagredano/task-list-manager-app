@@ -1,14 +1,9 @@
 import createTask from "../../factories/task-factory";
-import LocalStorageService from "../../services/local-storage-service";
-import TaskService from "../../services/task-service";
-import { updateComponent } from "../../state/state-manager";
-
-import { ProjectBoard } from "..";
+import StateManager from "../../state/state-manager";
 
 import "./create-task-form.css";
 
-const localStorageService = new LocalStorageService();
-const taskService = new TaskService(localStorageService);
+const stateManager = new StateManager();
 
 const Input = (id, placeholder) => {
   const input = document.createElement("input");
@@ -46,8 +41,7 @@ const AcceptBtn = (projectId) => {
 
     if (title) {
       const task = createTask(title, description, null, null, projectId);
-      taskService.createTask(task);
-      updateComponent("project-board-component", ProjectBoard());
+      stateManager.createTask(task);
     } else {
       alert("Task title is required");
     }

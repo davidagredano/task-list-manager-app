@@ -1,13 +1,10 @@
-import LocalStorageService from "../../services/local-storage-service";
-import ProjectService from "../../services/project-service";
-import { updateComponent } from "../../state/state-manager";
+import StateManager from "../../state/state-manager";
 
-import { ProjectListItems, ProjectBoard, Task, CreateTaskForm } from "..";
+import { Task, CreateTaskForm } from "..";
 
 import "./project.css";
 
-const localStorageService = new LocalStorageService();
-const projectService = new ProjectService(localStorageService);
+const stateManager = new StateManager();
 
 const Title = (project) => {
   const title = document.createElement("h2");
@@ -23,9 +20,7 @@ const DeleteProjectBtn = (project) => {
   button.textContent = "Delete";
 
   button.addEventListener("click", () => {
-    projectService.deleteProject(project);
-    updateComponent("project-list-component", ProjectListItems());
-    updateComponent("project-board-component", ProjectBoard());
+    stateManager.deleteProject(project);
   });
 
   return button;

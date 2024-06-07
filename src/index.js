@@ -1,5 +1,3 @@
-import { initComponent } from "./state/state-manager";
-
 import {
   ProjectListItems,
   CreateProjectBtn,
@@ -7,10 +5,13 @@ import {
   ProjectBoard,
 } from "./components";
 
+import StateManager from "./state/state-manager";
+
 import "./index.css";
 
+const stateManager = new StateManager();
 
-initComponent("project-list-component", ProjectListItems());
-initComponent("create-project-btn-component", CreateProjectBtn());
+stateManager.initComponent("project-list-component", ProjectListItems());
+stateManager.initComponent("create-project-btn-component", CreateProjectBtn());
 document.body.appendChild(CreateProjectDialog());
-initComponent("project-board-component", ProjectBoard());
+stateManager.initComponent("project-board-component", ProjectBoard());

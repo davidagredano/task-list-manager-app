@@ -1,13 +1,8 @@
-import LocalStorageService from "../../services/local-storage-service";
-import TaskService from "../../services/task-service";
-import { updateComponent } from "../../state/state-manager";
-
-import { ProjectBoard } from "..";
+import StateManager from "../../state/state-manager";
 
 import "./task.css";
 
-const localStorageService = new LocalStorageService();
-const taskService = new TaskService(localStorageService);
+const stateManager = new StateManager();
 
 const DeleteTaskBtn = (task) => {
   const button = document.createElement("button");
@@ -15,8 +10,7 @@ const DeleteTaskBtn = (task) => {
   button.textContent = "Delete";
 
   button.addEventListener("click", () => {
-    taskService.deleteTask(task);
-    updateComponent("project-board-component", ProjectBoard());
+    stateManager.deleteTask(task);
   });
 
   return button;
@@ -63,8 +57,7 @@ const Checkbox = (task) => {
   button.textContent = task.completed ? "V" : "";
 
   button.addEventListener("click", () => {
-    taskService.toggleTaskCompletion(task);
-    updateComponent("project-board-component", ProjectBoard());
+    stateManager.toggleTaskCompletion(task);
   });
 
   return button;
