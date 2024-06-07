@@ -62,11 +62,14 @@ class LocalStorageService {
   }
 
   setDefaultProject() {
-    const defaultProject = createProject("default", "My tasks");
+    const defaultProject = createProject("My tasks");
     localStorage.setItem("projects", JSON.stringify([defaultProject]));
   }
-
+  
   getProjects() {
+    if (localStorage.getItem("projects") === null) {
+      this.setDefaultProject();
+    }
     return JSON.parse(localStorage.getItem("projects"));
   }
 

@@ -1,4 +1,3 @@
-import LocalStorageService from "./services/local-storage-service";
 import { initComponent } from "./state/state-manager";
 
 import {
@@ -10,11 +9,6 @@ import {
 
 import "./index.css";
 
-const localStorageService = new LocalStorageService();
-
-if (!localStorageService.getProjects()) {
-  localStorageService.setDefaultProject();
-}
 
 initComponent("project-list-component", ProjectListItems());
 initComponent("create-project-btn-component", CreateProjectBtn());
