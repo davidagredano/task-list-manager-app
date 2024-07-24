@@ -1,4 +1,6 @@
-import createProject from "../factories/project-factory";
+import Factory from "../factory";
+
+const factory = new Factory();
 
 class LocalStorageService {
   constructor() {}
@@ -62,7 +64,7 @@ class LocalStorageService {
   }
 
   setDefaultProject() {
-    const defaultProject = createProject("My tasks");
+    const defaultProject = factory.createProject("My tasks");
     localStorage.setItem("projects", JSON.stringify([defaultProject]));
   }
 

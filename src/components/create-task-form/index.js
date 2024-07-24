@@ -1,8 +1,9 @@
-import createTask from "../../factories/task-factory";
+import Factory from "../../factory";
 import StateManager from "../../state/state-manager";
 
 import "./create-task-form.css";
 
+const factory = new Factory();
 const stateManager = new StateManager();
 
 const Input = (id, placeholder) => {
@@ -40,7 +41,13 @@ const AcceptBtn = (projectId) => {
     const description = document.getElementById(descriptionInputId).value;
 
     if (title) {
-      const task = createTask(title, description, null, null, projectId);
+      const task = factory.createTask(
+        title,
+        description,
+        null,
+        null,
+        projectId
+      );
       stateManager.createTask(task);
     } else {
       alert("Task title is required");

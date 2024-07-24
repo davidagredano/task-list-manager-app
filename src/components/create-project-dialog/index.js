@@ -1,8 +1,9 @@
-import createProject from "../../factories/project-factory";
+import Factory from "../../factory";
 import StateManager from "../../state/state-manager";
 
 import "./create-project-dialog.css";
 
+const factory = new Factory();
 const stateManager = new StateManager();
 
 const closeDialog = () => {
@@ -43,7 +44,7 @@ const AcceptBtn = () => {
     const projectName = input.value;
 
     if (projectName) {
-      const project = createProject(projectName);
+      const project = factory.createProject(projectName);
       stateManager.createProject(project);
       closeDialog();
       input.value = "";
