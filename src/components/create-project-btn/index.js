@@ -1,3 +1,5 @@
+import CreateProjectDialog from "../create-project-dialog";
+
 import "./create-project-btn.css";
 
 const CreateProjectBtn = () => {
@@ -6,7 +8,8 @@ const CreateProjectBtn = () => {
   createProjectBtn.innerHTML = "Create new project";
 
   createProjectBtn.addEventListener("click", () => {
-    const dialog = document.querySelector("#create-project-dialog");
+    const dialog =
+      document.querySelector("#create-project-dialog") || CreateProjectDialog();
     dialog.showModal();
   });
 

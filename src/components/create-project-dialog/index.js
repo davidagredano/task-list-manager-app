@@ -78,6 +78,8 @@ const CreateProjectDialog = () => {
   btnGroup.appendChild(CancelBtn());
   btnGroup.appendChild(AcceptBtn());
 
+  document.body.appendChild(dialog);
+  
   return dialog;
 };
 
