@@ -12,24 +12,24 @@ class StateManager {
     this.projectService = new ProjectService(dataAccessService);
   }
 
-  initComponent(entryPointElementId, component) {
-    const entryPoint = document.getElementById(entryPointElementId);
+  initComponent(selector, component) {
+    const entryPoint = document.querySelector(selector);
     entryPoint.appendChild(component);
   }
 
-  updateComponent(entryPointElementId, component) {
-    const entryPoint = document.getElementById(entryPointElementId);
+  updateComponent(selector, component) {
+    const entryPoint = document.querySelector(selector);
     entryPoint.innerHTML = "";
     entryPoint.appendChild(component);
   }
 
   updateTaskComponents() {
-    this.updateComponent("project-board-component", ProjectBoard());
+    this.updateComponent("#project-board-component", ProjectBoard());
   }
 
   updateProjectComponents() {
-    this.updateComponent("project-list-component", ProjectListItems());
-    this.updateComponent("project-board-component", ProjectBoard());
+    this.updateComponent("#project-list-component", ProjectListItems());
+    this.updateComponent("#project-board-component", ProjectBoard());
   }
 
   createTask(task) {

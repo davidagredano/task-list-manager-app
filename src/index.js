@@ -10,6 +10,6 @@ import "./index.css";
 
 const stateManager = new StateManager();
 
-stateManager.initComponent("project-list-component", ProjectListItems());
-stateManager.initComponent("create-project-btn-component", CreateProjectBtn());
-stateManager.initComponent("project-board-component", ProjectBoard());
+stateManager.initComponent("#project-list-component", ProjectListItems());
+stateManager.initComponent("#create-project-btn-component", CreateProjectBtn());
+stateManager.initComponent("#project-board-component", ProjectBoard());
