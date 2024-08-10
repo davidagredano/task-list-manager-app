@@ -52,8 +52,8 @@ class LocalStorageService {
 
   updateProject(project) {
     const projects = this.getProjects();
-    targetProject = this.getItemById(projects, project.id);
-    targetProject = project;
+    const projectIndex = projects.findIndex((item) => item.id === project.id);
+    projects[projectIndex] = project;
     this.saveProjects(projects);
   }
 
