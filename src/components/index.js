@@ -5,6 +5,8 @@ import ProjectBoard from "./project-board";
 import Project from "./project";
 import Task from "./task";
 import CreateTaskForm from "./create-task-form";
+import RenameProjectDialog from "./rename-project-dialog";
+import RenameProjectBtn from "./rename-project-btn";
 
 export {
   ProjectListItems,
@@ -14,4 +16,6 @@ export {
   Project,
   Task,
   CreateTaskForm,
+  RenameProjectDialog,
+  RenameProjectBtn,
 };
