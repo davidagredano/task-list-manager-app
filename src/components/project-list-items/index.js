@@ -1,5 +1,9 @@
 import StateManager from "../../state/state-manager";
 
+import { RenameProjectBtn } from "..";
+
+import "./project-list-item.css";
+
 const stateManager = new StateManager();
 
 const ProjectListItems = () => {
@@ -8,7 +12,13 @@ const ProjectListItems = () => {
   stateManager.getProjects().forEach((project) => {
     const projectItem = document.createElement("li");
     projectItem.classList.add("project-list__item");
-    projectItem.innerHTML = project.name;
+
+    const projectItemName = document.createElement("span");
+    projectItemName.innerText = project.name;
+
+    projectItem.appendChild(projectItemName);
+    projectItem.appendChild(RenameProjectBtn(project));
+    
     fragment.appendChild(projectItem);
   });
 
