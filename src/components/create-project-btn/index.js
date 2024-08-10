@@ -1,4 +1,4 @@
-import CreateProjectDialog from "../create-project-dialog";
+import { CreateProjectDialog } from "..";
 
 import "./create-project-btn.css";
 
