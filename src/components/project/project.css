@@ -12,6 +12,11 @@
   align-items: center;
 }
 
+.project__actions {
+  display: flex;
+  gap: 4px;
+}
+
 .project__delete-btn {
   height: 28px;
   cursor: pointer;

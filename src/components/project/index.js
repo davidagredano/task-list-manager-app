@@ -1,6 +1,6 @@
 import StateManager from "../../state/state-manager";
 
-import { Task, CreateTaskForm } from "..";
+import { Task, CreateTaskForm, RenameProjectBtn } from "..";
 
 import "./project.css";
 
@@ -30,6 +30,7 @@ const Actions = (project) => {
   const div = document.createElement("div");
   div.classList.add("project__actions");
 
+  div.appendChild(RenameProjectBtn(project));
   div.appendChild(DeleteProjectBtn(project));
 
   return div;
