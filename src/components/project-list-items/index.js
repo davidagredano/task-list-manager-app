@@ -11,14 +11,14 @@ const ProjectListItems = () => {
 
   stateManager.getProjects().forEach((project) => {
     const projectItem = document.createElement("li");
-    projectItem.classList.add("project-list__item");
+    projectItem.className = "project-list__item";
 
     const projectItemName = document.createElement("span");
     projectItemName.innerText = project.name;
 
     projectItem.appendChild(projectItemName);
     projectItem.appendChild(RenameProjectBtn(project));
-    
+
     fragment.appendChild(projectItem);
   });
 

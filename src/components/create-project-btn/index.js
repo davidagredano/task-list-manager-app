@@ -1,19 +1,14 @@
-import { CreateProjectDialog } from "..";
+import { CreateProjectDialog, Button } from "..";
 
 import "./create-project-btn.css";
 
-const CreateProjectBtn = () => {
-  const createProjectBtn = document.createElement("button");
-  createProjectBtn.classList.add("create-project-btn");
-  createProjectBtn.innerHTML = "Create new project";
-
-  createProjectBtn.addEventListener("click", () => {
-    const dialog =
-      document.querySelector("#create-project-dialog") || CreateProjectDialog();
-    dialog.showModal();
-  });
-
-  return createProjectBtn;
+const showProjectDialog = () => {
+  const dialog =
+    document.querySelector("#create-project-dialog") || CreateProjectDialog();
+  dialog.showModal();
 };
+
+const CreateProjectBtn = () =>
+  Button("create-project-btn", "Create new project", showProjectDialog);
 
 export default CreateProjectBtn;

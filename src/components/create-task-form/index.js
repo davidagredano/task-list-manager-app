@@ -1,71 +1,60 @@
 import Factory from "../../factory";
 import StateManager from "../../state/state-manager";
 
+import { Input, Div, Button } from "..";
+
 import "./create-task-form.css";
 
 const factory = new Factory();
 const stateManager = new StateManager();
 
-const Input = (id, placeholder) => {
-  const input = document.createElement("input");
-  input.classList.add("create-task-form__input");
-  input.id = id;
-  input.placeholder = placeholder;
+const handleAcceptButton = (projectId) => {
+  const titleInputId = "task-title-input-" + projectId;
+  const title = document.getElementById(titleInputId).value;
+  const descriptionInputId = "task-description-input-" + projectId;
+  const description = document.getElementById(descriptionInputId).value;
 
-  return input;
+  if (title) {
+    const task = factory.createTask(title, description, null, null, projectId);
+    stateManager.createTask(task);
+  } else {
+    alert("Task title is required");
+  }
 };
 
-const Div = (className) => {
-  const div = document.createElement("div");
-  div.classList.add(className);
-
-  return div;
-};
-
-const Button = (text, onClick) => {
-  const btn = document.createElement("button");
-  btn.classList.add("create-task-form__btn");
-  btn.textContent = text;
-  btn.type = "button";
-
-  btn.addEventListener("click", onClick);
-
-  return btn;
-};
-
-const AcceptBtn = (projectId) => {
-  const acceptBtn = Button("Add", () => {
-    const titleInputId = "task-title-input-" + projectId;
-    const title = document.getElementById(titleInputId).value;
-    const descriptionInputId = "task-description-input-" + projectId;
-    const description = document.getElementById(descriptionInputId).value;
-
-    if (title) {
-      const task = factory.createTask(
-        title,
-        description,
-        null,
-        null,
-        projectId
-      );
-      stateManager.createTask(task);
-    } else {
-      alert("Task title is required");
-    }
-  });
-
-  return acceptBtn;
+const handleCancelButton = () => {
+  return;
 };
 
 const CreateTaskForm = (projectId) => {
   const form = document.createElement("form");
-  form.classList.add("create-task-form");
+  form.className = "create-task-form";
 
-  form.appendChild(Input("task-title-input-" + projectId, "Title"));
-  form.appendChild(Input("task-description-input-" + projectId, "Description"));
-  const btnGroup = form.appendChild(Div("create-task-form__btn-group"));
-  btnGroup.appendChild(Button("Cancel"));
-  btnGroup.appendChild(AcceptBtn(projectId));
+  const titleInput = Input(
+    "create-task-form__input",
+    `task-title-input-${projectId}`,
+    "Title"
+  );
+  const descriptionInput = Input(
+    "create-task-form__input",
+    `task-description-input-${projectId}`,
+    "Description"
+  );
+  const btnGroup = Div("create-task-form__btn-group");
+  const cancelBtn = Button(
+    "create-task-form__btn",
+    "Cancel",
+    handleCancelButton
+  );
+  const acceptBtn = Button("create-task-form__btn", "Add", () =>
+    handleAcceptButton(projectId)
+  );
+
+  form.appendChild(titleInput);
+  form.appendChild(descriptionInput);
+  form.appendChild(btnGroup);
+  btnGroup.appendChild(cancelBtn);
+  btnGroup.appendChild(acceptBtn);
 
   return form;
 };

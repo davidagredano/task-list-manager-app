@@ -1,68 +1,38 @@
 import StateManager from "../../state/state-manager";
 
-import { Task, CreateTaskForm, RenameProjectBtn } from "..";
+import { Task, CreateTaskForm, RenameProjectBtn, Div, Button, Title } from "..";
 
 import "./project.css";
 
 const stateManager = new StateManager();
 
-const Title = (project) => {
-  const title = document.createElement("h2");
-  title.classList.add("project__title");
-  title.textContent = project.name;
-
-  return title;
-};
-
-const DeleteProjectBtn = (project) => {
-  const button = document.createElement("button");
-  button.classList.add("project__delete-btn");
-  button.textContent = "Delete";
-
-  button.addEventListener("click", () => {
-    stateManager.deleteProject(project);
-  });
-
-  return button;
-};
-
-const Actions = (project) => {
-  const div = document.createElement("div");
-  div.classList.add("project__actions");
-
-  div.appendChild(RenameProjectBtn(project));
-  div.appendChild(DeleteProjectBtn(project));
-
-  return div;
-};
-
-const Header = (project) => {
-  const header = document.createElement("header");
-  header.classList.add("project__header");
-
-  header.appendChild(Title(project));
-  header.appendChild(Actions(project));
-
-  return header;
-};
-
-const TaskList = (project) => {
-  const taskList = document.createElement("div");
-  taskList.className = "project__tasks";
-
-  project.tasks.forEach((task) => {
-    taskList.appendChild(Task(task));
-  });
-
-  return taskList;
-};
+const deleteProjectBtnHandler = (project) =>
+  stateManager.deleteProject(project);
 
 const Project = (project) => {
   const article = document.createElement("article");
-  article.classList.add("project");
+  article.className = "project";
 
-  article.appendChild(Header(project));
-  article.appendChild(TaskList(project));
+  const header = document.createElement("header");
+  header.className = "project__header";
+
+  const title = Title("project__title", project.name);
+  const projectActions = Div("project__actions");
+  const renameProjectBtn = RenameProjectBtn(project);
+  const deleteProjectBtn = Button("project__delete-btn", "Delete", () =>
+    deleteProjectBtnHandler(project)
+  );
+  const taskList = Div("project__tasks");
+
+  article.appendChild(header);
+  header.appendChild(title);
+  header.appendChild(projectActions);
+  projectActions.appendChild(renameProjectBtn);
+  projectActions.appendChild(deleteProjectBtn);
+  article.appendChild(taskList);
+  project.tasks.forEach((task) => {
+    taskList.appendChild(Task(task));
+  });
   article.appendChild(CreateTaskForm(project.id));
 
   return article;

@@ -1,69 +1,25 @@
-import Factory from "../../factory";
 import StateManager from "../../state/state-manager";
+
+import { Input, Div, Button, Title } from "..";
 
 import "./rename-project-dialog.css";
 
-const factory = new Factory();
 const stateManager = new StateManager();
 
 const removeDialog = () => {
   document.querySelector("#rename-project-dialog").remove();
 };
 
-const Title = () => {
-  const title = document.createElement("h3");
-  title.classList.add("rename-project-dialog__title");
-  title.innerHTML = "Rename project";
+const acceptBtnHandler = (project) => {
+  const input = document.querySelector("#rename-project-name-input");
 
-  return title;
-};
-
-const Input = (project) => {
-  const input = document.createElement("input");
-  input.classList.add("rename-project-dialog__input");
-  input.id = "rename-project-name-input";
-  input.placeholder = "Enter name";
-  input.value = project.name;
-  input.select();
-
-  return input;
-};
-
-const Div = (className) => {
-  const div = document.createElement("div");
-  div.classList.add(className);
-
-  return div;
-};
-
-const AcceptBtn = (project) => {
-  const acceptBtn = document.createElement("button");
-  acceptBtn.classList.add("rename-project-dialog__btn");
-  acceptBtn.innerHTML = "Done";
-
-  acceptBtn.addEventListener("click", () => {
-    const input = document.querySelector("#rename-project-name-input");
-
-    if (input.value) {
-      project.name = input.value;
-      stateManager.updateProject(project);
-      removeDialog();
-    } else {
-      alert("Project name is required");
-    }
-  });
-
-  return acceptBtn;
-};
-
-const CancelBtn = () => {
-  const cancelBtn = document.createElement("button");
-  cancelBtn.classList.add("rename-project-dialog__btn");
-  cancelBtn.innerHTML = "Cancel";
-
-  cancelBtn.addEventListener("click", removeDialog);
-
-  return cancelBtn;
+  if (input.value) {
+    project.name = input.value;
+    stateManager.updateProject(project);
+    removeDialog();
+  } else {
+    alert("Project name is required");
+  }
 };
 
 const RenameProjectDialog = (project) => {
@@ -71,12 +27,31 @@ const RenameProjectDialog = (project) => {
   dialog.id = "rename-project-dialog";
   dialog.classList.add("rename-project-dialog");
 
-  const wrapper = dialog.appendChild(Div("rename-project-dialog__wrapper"));
-  wrapper.appendChild(Title());
-  wrapper.appendChild(Input(project));
-  const btnGroup = wrapper.appendChild(Div("rename-project-dialog__btn-group"));
-  btnGroup.appendChild(CancelBtn());
-  btnGroup.appendChild(AcceptBtn(project));
+  const wrapper = Div("rename-project-dialog__wrapper");
+  const title = Title("rename-project-dialog__title", "Rename project");
+  const input = Input(
+    "rename-project-dialog__input",
+    "rename-project-name-input",
+    "Enter name",
+    project.name,
+    true
+  );
+  const btnGroup = Div("rename-project-dialog__btn-group");
+  const cancelBtn = Button(
+    "rename-project-dialog__btn",
+    "Cancel",
+    removeDialog
+  );
+  const acceptBtn = Button("rename-project-dialog__btn", "Done", () =>
+    acceptBtnHandler(project)
+  );
+
+  dialog.appendChild(wrapper);
+  wrapper.appendChild(title);
+  wrapper.appendChild(input);
+  wrapper.appendChild(btnGroup);
+  btnGroup.appendChild(cancelBtn);
+  btnGroup.appendChild(acceptBtn);
 
   document.body.appendChild(dialog);
 

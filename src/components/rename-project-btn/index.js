@@ -1,18 +1,15 @@
-import { RenameProjectDialog } from "..";
+import { RenameProjectDialog, Button } from "..";
 
 import "./rename-project-btn.css";
 
-const RenameProjectBtn = (project) => {
-  const button = document.createElement("button");
-  button.classList.add("rename-project-btn");
-  button.innerHTML = "Rename";
-
-  button.addEventListener("click", () => {
-    const dialog = RenameProjectDialog(project);
-    dialog.showModal();
-  });
-
-  return button;
+const renameProjectBtnHandler = (project) => {
+  const dialog = RenameProjectDialog(project);
+  dialog.showModal();
 };
+
+const RenameProjectBtn = (project) =>
+  Button("rename-project-btn", "Rename", () =>
+    renameProjectBtnHandler(project)
+  );
 
 export default RenameProjectBtn;

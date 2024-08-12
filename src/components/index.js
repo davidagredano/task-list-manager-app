@@ -7,6 +7,10 @@ import Task from "./task";
 import CreateTaskForm from "./create-task-form";
 import RenameProjectDialog from "./rename-project-dialog";
 import RenameProjectBtn from "./rename-project-btn";
+import Input from "./input";
+import Div from "./div";
+import Button from "./button";
+import Title from "./title";
 
 export {
   ProjectListItems,
@@ -18,4 +22,8 @@ export {
   CreateTaskForm,
   RenameProjectDialog,
   RenameProjectBtn,
+  Input,
+  Div,
+  Button,
+  Title,
 };

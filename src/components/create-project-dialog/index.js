@@ -1,6 +1,8 @@
 import Factory from "../../factory";
 import StateManager from "../../state/state-manager";
 
+import { Input, Div, Button, Title } from "..";
+
 import "./create-project-dialog.css";
 
 const factory = new Factory();
@@ -10,76 +12,50 @@ const closeDialog = () => {
   document.querySelector("#create-project-dialog").close();
 };
 
-const Title = () => {
-  const title = document.createElement("h3");
-  title.classList.add("create-project-dialog__title");
-  title.innerHTML = "Create new project";
+const acceptBtnHandler = () => {
+  const input = document.querySelector("#project-name-input");
+  const projectName = input.value;
 
-  return title;
-};
-
-const Input = () => {
-  const input = document.createElement("input");
-  input.classList.add("create-project-dialog__input");
-  input.id = "project-name-input";
-  input.placeholder = "Enter name";
-
-  return input;
-};
-
-const Div = (className) => {
-  const div = document.createElement("div");
-  div.classList.add(className);
-
-  return div;
-};
-
-const AcceptBtn = () => {
-  const acceptBtn = document.createElement("button");
-  acceptBtn.classList.add("create-project-dialog__btn");
-  acceptBtn.innerHTML = "Add";
-
-  acceptBtn.addEventListener("click", () => {
-    const input = document.querySelector("#project-name-input");
-    const projectName = input.value;
-
-    if (projectName) {
-      const project = factory.createProject(projectName);
-      stateManager.createProject(project);
-      closeDialog();
-      input.value = "";
-    } else {
-      alert("Project name is required");
-    }
-  });
-
-  return acceptBtn;
-};
-
-const CancelBtn = () => {
-  const cancelBtn = document.createElement("button");
-  cancelBtn.classList.add("create-project-dialog__btn");
-  cancelBtn.innerHTML = "Cancel";
-
-  cancelBtn.addEventListener("click", closeDialog);
-
-  return cancelBtn;
+  if (projectName) {
+    const project = factory.createProject(projectName);
+    stateManager.createProject(project);
+    closeDialog();
+    input.value = "";
+  } else {
+    alert("Project name is required");
+  }
 };
 
 const CreateProjectDialog = () => {
   const dialog = document.createElement("dialog");
   dialog.id = "create-project-dialog";
-  dialog.classList.add("create-project-dialog");
+  dialog.className = "create-project-dialog";
 
-  const wrapper = dialog.appendChild(Div("create-project-dialog__wrapper"));
-  wrapper.appendChild(Title());
-  wrapper.appendChild(Input());
-  const btnGroup = wrapper.appendChild(Div("create-project-dialog__btn-group"));
-  btnGroup.appendChild(CancelBtn());
-  btnGroup.appendChild(AcceptBtn());
+  const wrapper = Div("create-project-dialog__wrapper");
+  const title = Title("create-project-dialog__title", "Create new project");
+  const input = Input(
+    "create-project-dialog__input",
+    "project-name-input",
+    "Enter name",
+    ""
+  );
+  const btnGroup = Div("create-project-dialog__btn-group");
+  const cancelBtn = Button("create-project-dialog__btn", "Cancel", closeDialog);
+  const acceptBtn = Button(
+    "create-project-dialog__btn",
+    "Add",
+    acceptBtnHandler
+  );
+
+  dialog.appendChild(wrapper);
+  wrapper.appendChild(title);
+  wrapper.appendChild(input);
+  wrapper.appendChild(btnGroup);
+  btnGroup.appendChild(cancelBtn);
+  btnGroup.appendChild(acceptBtn);
 
   document.body.appendChild(dialog);
-  
+
   return dialog;
 };
 
