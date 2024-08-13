@@ -22,7 +22,8 @@ class LocalStorageService {
 
   updateTask(task, newProjectId) {
     const projects = this.getProjects();
-    const project = this.getItemById(projects, projectId || "default");
+    const projectIndex = this.getIndexById(projects, task.projectId);
+    const project = projects[projectIndex];
 
     if (newProjectId) {
       const oldProject = project;
@@ -30,8 +31,8 @@ class LocalStorageService {
       oldProject.tasks = this.deleteItemById(project.tasks, id);
       newProject.tasks.push(task);
     } else {
-      let targetTask = this.getItemById(project.tasks, id);
-      targetTask = task;
+      const taskIndex = this.getIndexById(project.tasks, task.id);
+      project.tasks[taskIndex] = task;
     }
 
     this.saveProjects(projects);
@@ -85,6 +86,10 @@ class LocalStorageService {
 
   getItemById(arrOfObj, id) {
     return arrOfObj.find((item) => item.id === id);
+  }
+
+  getIndexById(arrOfObj, id) {
+    return arrOfObj.findIndex((item) => item.id === id);
   }
 
   deleteItemById(arrOfObj, id) {
