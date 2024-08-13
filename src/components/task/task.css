@@ -16,6 +16,12 @@
   flex: 1;
 }
 
+.task__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
 .task__delete-btn {
   height: 28px;
   cursor: pointer;

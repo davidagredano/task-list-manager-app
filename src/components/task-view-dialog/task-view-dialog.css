@@ -1,0 +1,32 @@
+.task-view-dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.task-view-dialog__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-view-dialog__form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-view-dialog__input {
+  height: 28px;
+  padding: 0 6px;
+}
+
+.task-view-dialog__btn-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}

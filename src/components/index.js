@@ -11,6 +11,7 @@ import Input from "./input";
 import Div from "./div";
 import Button from "./button";
 import Title from "./title";
+import TaskViewDialog from "./task-view-dialog";
 
 export {
   ProjectListItems,
@@ -26,4 +27,5 @@ export {
   Div,
   Button,
   Title,
+  TaskViewDialog,
 };

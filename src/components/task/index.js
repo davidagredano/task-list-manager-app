@@ -1,10 +1,15 @@
 import StateManager from "../../state/state-manager";
 
-import { Div, Button, Title } from "..";
+import { TaskViewDialog, Div, Button, Title } from "..";
 
 import "./task.css";
 
 const stateManager = new StateManager();
+
+const editTaskBtnHandler = (task) => {
+  const dialog = TaskViewDialog(task);
+  dialog.showModal();
+};
 
 const deleteTaskBtnHandler = (task) => {
   stateManager.deleteTask(task);
@@ -35,6 +40,7 @@ const Task = (task) => {
   const description = Description(task);
 
   const taskActions = Div("task__actions");
+  const editTaskBtn = Button("Edit", () => editTaskBtnHandler(task));
   const deleteTaskBtn = Button("Delete", () => deleteTaskBtnHandler(task));
 
   article.appendChild(taskbody);
@@ -43,6 +49,7 @@ const Task = (task) => {
   taskContent.appendChild(title);
   taskContent.appendChild(description);
   taskbody.appendChild(taskActions);
+  taskActions.appendChild(editTaskBtn);
   taskActions.appendChild(deleteTaskBtn);
 
   return article;
