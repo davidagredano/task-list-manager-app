@@ -41,14 +41,8 @@ const CreateTaskForm = (projectId) => {
     "Description"
   );
   const btnGroup = Div("create-task-form__btn-group");
-  const cancelBtn = Button(
-    "create-task-form__btn",
-    "Cancel",
-    handleCancelButton
-  );
-  const acceptBtn = Button("create-task-form__btn", "Add", () =>
-    handleAcceptButton(projectId)
-  );
+  const cancelBtn = Button("Cancel", handleCancelButton);
+  const acceptBtn = Button("Add", () => handleAcceptButton(projectId));
 
   form.appendChild(titleInput);
   form.appendChild(descriptionInput);

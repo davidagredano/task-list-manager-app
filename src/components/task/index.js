@@ -25,17 +25,17 @@ const Task = (task) => {
   article.className = "task";
 
   const taskbody = Div("task__body");
-  const checkbox = Button("task__checkbox", task.completed ? "V" : "", () =>
-    toggleTaskCompletion(task)
+  const checkbox = Button(
+    task.completed ? "V" : "",
+    () => toggleTaskCompletion(task),
+    "task__checkbox"
   );
   const taskContent = Div("task__content");
   const title = Title("task__title", task.title);
   const description = Description(task);
 
   const taskActions = Div("task__actions");
-  const deleteTaskBtn = Button("task__delete-btn", "Delete", () =>
-    deleteTaskBtnHandler(task)
-  );
+  const deleteTaskBtn = Button("Delete", () => deleteTaskBtnHandler(task));
 
   article.appendChild(taskbody);
   taskbody.appendChild(checkbox);

@@ -19,7 +19,7 @@ const Project = (project) => {
   const title = Title("project__title", project.name);
   const projectActions = Div("project__actions");
   const renameProjectBtn = RenameProjectBtn(project);
-  const deleteProjectBtn = Button("project__delete-btn", "Delete", () =>
+  const deleteProjectBtn = Button("Delete", () =>
     deleteProjectBtnHandler(project)
   );
   const taskList = Div("project__tasks");
