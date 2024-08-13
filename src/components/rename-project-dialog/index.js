@@ -37,14 +37,8 @@ const RenameProjectDialog = (project) => {
     true
   );
   const btnGroup = Div("rename-project-dialog__btn-group");
-  const cancelBtn = Button(
-    "rename-project-dialog__btn",
-    "Cancel",
-    removeDialog
-  );
-  const acceptBtn = Button("rename-project-dialog__btn", "Done", () =>
-    acceptBtnHandler(project)
-  );
+  const cancelBtn = Button("Cancel", removeDialog);
+  const acceptBtn = Button("Done", () => acceptBtnHandler(project));
 
   dialog.appendChild(wrapper);
   wrapper.appendChild(title);

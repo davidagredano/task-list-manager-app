@@ -20,12 +20,7 @@
 }
 
 .rename-project-dialog__btn-group {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 4px;
-}
-
-.rename-project-dialog__btn {
-  height: 28px;
-  cursor: pointer;
-  flex: 1;
 }
