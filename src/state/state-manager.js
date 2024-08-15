@@ -52,6 +52,10 @@ class StateManager {
     this.updateTaskComponents();
   }
 
+  getTasksArray(projectId) {
+    return this.taskService.getTasksArray(projectId);
+  }
+
   createProject(project) {
     this.projectService.createProject(project);
     this.updateProjectComponents();

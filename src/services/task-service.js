@@ -18,6 +18,10 @@ class TaskService {
   deleteTask(task) {
     this.dataAccessService.deleteTask(task);
   }
+
+  getTasksArray(projectId) {
+    return this.dataAccessService.getTasksArray(projectId);
+  }
 }
 
 export default TaskService;

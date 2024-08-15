@@ -5,7 +5,7 @@ class Factory {
     return {
       id: new Date().getTime().toString(),
       name,
-      tasks: [],
+      tasks: {},
     };
   }
 

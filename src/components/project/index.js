@@ -23,6 +23,7 @@ const Project = (project) => {
     deleteProjectBtnHandler(project)
   );
   const taskList = Div("project__tasks");
+  const tasks = stateManager.getTasksArray(project.id);
 
   article.appendChild(header);
   header.appendChild(title);
@@ -30,7 +31,7 @@ const Project = (project) => {
   projectActions.appendChild(renameProjectBtn);
   projectActions.appendChild(deleteProjectBtn);
   article.appendChild(taskList);
-  project.tasks.forEach((task) => {
+  tasks.forEach((task) => {
     taskList.appendChild(Task(task));
   });
   article.appendChild(CreateTaskForm(project.id));

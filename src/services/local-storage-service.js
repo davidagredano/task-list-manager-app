@@ -7,32 +7,25 @@ class LocalStorageService {
 
   createTask(task) {
     const projects = this.getProjects();
-    const project = this.getItemById(projects, task.projectId);
-    project.tasks.push(task);
+    projects[task.projectId].tasks[task.id] = task;
     this.saveProjects(projects);
   }
 
   toggleTaskCompletion(task) {
     const projects = this.getProjects();
-    const project = this.getItemById(projects, task.projectId);
-    const targetTask = this.getItemById(project.tasks, task.id);
+    const targetTask = projects[task.projectId].tasks[task.id];
     targetTask.completed = !targetTask.completed;
     this.saveProjects(projects);
   }
 
   updateTask(task, newProjectId) {
     const projects = this.getProjects();
-    const projectIndex = this.getIndexById(projects, task.projectId);
-    const project = projects[projectIndex];
 
     if (newProjectId) {
-      const oldProject = project;
-      const newProject = this.getItemById(projects, newProjectId);
-      oldProject.tasks = this.deleteItemById(project.tasks, id);
-      newProject.tasks.push(task);
+      delete projects[task.projectId].tasks[task.id];
+      projects[newProjectId].tasks[task.id] = task;
     } else {
-      const taskIndex = this.getIndexById(project.tasks, task.id);
-      project.tasks[taskIndex] = task;
+      projects[task.projectId].tasks[task.id] = task;
     }
 
     this.saveProjects(projects);
@@ -40,9 +33,14 @@ class LocalStorageService {
 
   deleteTask(task) {
     const projects = this.getProjects();
-    const project = this.getItemById(projects, task.projectId);
-    project.tasks = this.deleteItemById(project.tasks, task.id);
+    delete projects[task.projectId].tasks[task.id];
     this.saveProjects(projects);
+  }
+
+  getTasksArray(projectId) {
+    const projects = this.getProjects();
+    const tasks = projects[projectId].tasks;
+    return Object.values(tasks);
   }
 
   createProject(project) {
