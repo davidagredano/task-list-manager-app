@@ -70,6 +70,10 @@ class StateManager {
   getProjects() {
     return this.projectService.getProjects();
   }
+
+  getProjectsArray() {
+    return this.projectService.getProjectsArray();
+  }
 }
 
 export default StateManager;

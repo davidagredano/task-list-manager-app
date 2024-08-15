@@ -10,7 +10,8 @@ const ProjectBoard = () => {
   const projectBoard = document.createElement("main");
   projectBoard.className = "project-board";
 
-  stateManager.getProjects().forEach((project) => {
+  const projects = stateManager.getProjectsArray();
+  projects.forEach((project) => {
     projectBoard.appendChild(Project(project));
   });
 

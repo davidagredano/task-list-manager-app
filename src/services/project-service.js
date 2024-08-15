@@ -18,6 +18,10 @@ class ProjectService {
   getProjects() {
     return this.dataAccessService.getProjects();
   }
+
+  getProjectsArray() {
+    return this.dataAccessService.getProjectsArray();
+  }
 }
 
 export default ProjectService;

@@ -47,26 +47,27 @@ class LocalStorageService {
 
   createProject(project) {
     const projects = this.getProjects();
-    projects.push(project);
+    projects[project.id] = project;
     this.saveProjects(projects);
   }
 
   updateProject(project) {
     const projects = this.getProjects();
-    const projectIndex = projects.findIndex((item) => item.id === project.id);
-    projects[projectIndex] = project;
+    projects[project.id] = project;
     this.saveProjects(projects);
   }
 
   deleteProject(project) {
     const projects = this.getProjects();
-    const filteredProjects = this.deleteItemById(projects, project.id);
-    this.saveProjects(filteredProjects);
+    delete projects[project.id];
+    this.saveProjects(projects);
   }
 
   setDefaultProject() {
     const defaultProject = factory.createProject("My tasks");
-    localStorage.setItem("projects", JSON.stringify([defaultProject]));
+    const projects = {};
+    projects[defaultProject.id] = defaultProject;
+    this.saveProjects(projects);
   }
 
   getProjects() {
@@ -74,6 +75,11 @@ class LocalStorageService {
       this.setDefaultProject();
     }
     return JSON.parse(localStorage.getItem("projects"));
+  }
+
+  getProjectsArray() {
+    const projects = this.getProjects();
+    return Object.values(projects);
   }
 
   saveProjects(projects) {

@@ -9,7 +9,7 @@ const stateManager = new StateManager();
 const ProjectListItems = () => {
   const fragment = document.createDocumentFragment();
 
-  stateManager.getProjects().forEach((project) => {
+  stateManager.getProjectsArray().forEach((project) => {
     const projectItem = document.createElement("li");
     projectItem.className = "project-list__item";
 
