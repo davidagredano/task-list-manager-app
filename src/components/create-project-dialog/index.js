@@ -40,12 +40,8 @@ const CreateProjectDialog = () => {
     ""
   );
   const btnGroup = Div("create-project-dialog__btn-group");
-  const cancelBtn = Button("create-project-dialog__btn", "Cancel", closeDialog);
-  const acceptBtn = Button(
-    "create-project-dialog__btn",
-    "Add",
-    acceptBtnHandler
-  );
+  const cancelBtn = Button("Cancel", closeDialog);
+  const acceptBtn = Button("Add", acceptBtnHandler);
 
   dialog.appendChild(wrapper);
   wrapper.appendChild(title);
