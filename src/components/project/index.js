@@ -1,10 +1,10 @@
-import StateManager from "../../state/state-manager";
+import Controller from "../../controller";
 
 import { Task, CreateTaskForm, RenameProjectBtn, Div, Button, Title } from "..";
 
 import "./project.css";
 
-const stateManager = new StateManager();
+const controller = new Controller();
 
 const deleteProjectBtnHandler = (project) =>
   stateManager.deleteProject(project);
@@ -23,7 +23,7 @@ const Project = (project) => {
     deleteProjectBtnHandler(project)
   );
   const taskList = Div("project__tasks");
-  const tasks = stateManager.getTasksArray(project.id);
+  const tasks = controller.getTasksArray(project.id);
 
   article.appendChild(header);
   header.appendChild(title);

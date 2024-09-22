@@ -1,10 +1,10 @@
-import StateManager from "../../state/state-manager";
+import Controller from "../../controller";
 
 import { TaskViewDialog, Div, Button, Title } from "..";
 
 import "./task.css";
 
-const stateManager = new StateManager();
+const controller = new Controller();
 
 const editTaskBtnHandler = (task) => {
   const dialog = TaskViewDialog(task);
@@ -12,7 +12,7 @@ const editTaskBtnHandler = (task) => {
 };
 
 const deleteTaskBtnHandler = (task) => {
-  stateManager.deleteTask(task);
+  controller.deleteTask(task);
 };
 
 const Description = (task) => {
@@ -23,7 +23,7 @@ const Description = (task) => {
   return p;
 };
 
-const toggleTaskCompletion = (task) => stateManager.toggleTaskCompletion(task);
+const toggleTaskCompletion = (task) => controller.toggleTaskCompletion(task);
 
 const Task = (task) => {
   const article = document.createElement("article");

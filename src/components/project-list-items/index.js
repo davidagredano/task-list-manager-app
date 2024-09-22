@@ -1,15 +1,15 @@
-import StateManager from "../../state/state-manager";
+import Controller from "../../controller";
 
 import { RenameProjectBtn } from "..";
 
 import "./project-list-item.css";
 
-const stateManager = new StateManager();
+const controller = new Controller();
 
 const ProjectListItems = () => {
   const fragment = document.createDocumentFragment();
 
-  stateManager.getProjectsArray().forEach((project) => {
+  controller.getProjectsArray().forEach((project) => {
     const projectItem = document.createElement("li");
     projectItem.className = "project-list__item";
 

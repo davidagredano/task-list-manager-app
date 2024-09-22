@@ -4,12 +4,12 @@ import {
   ProjectBoard,
 } from "./components";
 
-import StateManager from "./state/state-manager";
+import Controller from "./controller";
 
 import "./index.css";
 
-const stateManager = new StateManager();
+const controller = new Controller();
 
-stateManager.initComponent("#project-list-component", ProjectListItems());
-stateManager.initComponent("#create-project-btn-component", CreateProjectBtn());
-stateManager.initComponent("#project-board-component", ProjectBoard());
+controller.initComponent("#project-list-component", ProjectListItems());
+controller.initComponent("#create-project-btn-component", CreateProjectBtn());
+controller.initComponent("#project-board-component", ProjectBoard());

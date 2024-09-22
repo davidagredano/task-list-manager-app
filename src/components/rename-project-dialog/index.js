@@ -1,10 +1,10 @@
-import StateManager from "../../state/state-manager";
+import Controller from "../../controller";
 
 import { Input, Div, Button, Title } from "..";
 
 import "./rename-project-dialog.css";
 
-const stateManager = new StateManager();
+const controller = new Controller();
 
 const removeDialog = () => {
   document.querySelector("#rename-project-dialog").remove();
@@ -15,7 +15,7 @@ const acceptBtnHandler = (project) => {
 
   if (input.value) {
     project.name = input.value;
-    stateManager.updateProject(project);
+    controller.updateProject(project);
     removeDialog();
   } else {
     alert("Project name is required");

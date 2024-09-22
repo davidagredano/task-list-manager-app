@@ -1,12 +1,12 @@
 import Factory from "../../factory";
-import StateManager from "../../state/state-manager";
+import Controller from "../../controller";
 
 import { Input, Div, Button, Title } from "..";
 
 import "./create-project-dialog.css";
 
 const factory = new Factory();
-const stateManager = new StateManager();
+const controller = new Controller();
 
 const closeDialog = () => {
   document.querySelector("#create-project-dialog").close();
@@ -18,7 +18,7 @@ const acceptBtnHandler = () => {
 
   if (projectName) {
     const project = factory.createProject(projectName);
-    stateManager.createProject(project);
+    controller.createProject(project);
     closeDialog();
     input.value = "";
   } else {

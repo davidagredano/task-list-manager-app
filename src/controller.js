@@ -1,8 +1,8 @@
-import LocalStorageService from "../services/local-storage-service";
+import LocalStorageService from "./services/local-storage-service";
 
-import { ProjectBoard, ProjectListItems } from "../components";
+import { ProjectBoard, ProjectListItems } from "./components";
 
-class StateManager {
+class Controller {
   constructor() {
     this.dataAccessService = new LocalStorageService();
   }
@@ -75,4 +75,4 @@ class StateManager {
   }
 }
 
-export default StateManager;
+export default Controller;

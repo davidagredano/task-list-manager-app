@@ -1,12 +1,12 @@
 import Factory from "../../factory";
-import StateManager from "../../state/state-manager";
+import Controller from "../../controller";
 
 import { Input, Div, Button } from "..";
 
 import "./create-task-form.css";
 
 const factory = new Factory();
-const stateManager = new StateManager();
+const controller = new Controller();
 
 const handleAcceptButton = (projectId) => {
   const titleInputId = "task-title-input-" + projectId;
@@ -16,7 +16,7 @@ const handleAcceptButton = (projectId) => {
 
   if (title) {
     const task = factory.createTask(title, description, null, null, projectId);
-    stateManager.createTask(task);
+    controller.createTask(task);
   } else {
     alert("Task title is required");
   }

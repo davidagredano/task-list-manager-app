@@ -1,10 +1,10 @@
-import StateManager from "../../state/state-manager";
+import Controller from "../../controller";
 
 import { Input, Div, Button, Title } from "..";
 
 import "./task-view-dialog.css";
 
-const stateManager = new StateManager();
+const controller = new Controller();
 
 const removeDialog = () => {
   document.querySelector("#task-view-dialog").remove();
@@ -15,7 +15,7 @@ const acceptBtnHandler = (task) => {
   const descriptionInput = document.querySelector("#task-description-input");
   task.title = titleInput.value;
   task.description = descriptionInput.value;
-  stateManager.updateTask(task);
+  controller.updateTask(task);
   removeDialog();
 };
 
