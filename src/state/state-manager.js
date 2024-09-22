@@ -1,15 +1,10 @@
 import LocalStorageService from "../services/local-storage-service";
-import ProjectService from "../services/project-service";
-import TaskService from "../services/task-service";
 
 import { ProjectBoard, ProjectListItems } from "../components";
 
-const dataAccessService = new LocalStorageService();
-
 class StateManager {
   constructor() {
-    this.taskService = new TaskService(dataAccessService);
-    this.projectService = new ProjectService(dataAccessService);
+    this.dataAccessService = new LocalStorageService();
   }
 
   initComponent(selector, component) {
@@ -33,50 +28,50 @@ class StateManager {
   }
 
   createTask(task) {
-    this.taskService.createTask(task);
+    this.dataAccessService.createTask(task);
     this.updateTaskComponents();
   }
 
   toggleTaskCompletion(task) {
-    this.taskService.toggleTaskCompletion(task);
+    this.dataAccessService.toggleTaskCompletion(task);
     this.updateTaskComponents();
   }
 
   updateTask(task, newProjectId) {
-    this.taskService.updateTask(task, newProjectId);
+    this.dataAccessService.updateTask(task, newProjectId);
     this.updateTaskComponents();
   }
 
   deleteTask(task) {
-    this.taskService.deleteTask(task);
+    this.dataAccessService.deleteTask(task);
     this.updateTaskComponents();
   }
 
   getTasksArray(projectId) {
-    return this.taskService.getTasksArray(projectId);
+    return this.dataAccessService.getTasksArray(projectId);
   }
 
   createProject(project) {
-    this.projectService.createProject(project);
+    this.dataAccessService.createProject(project);
     this.updateProjectComponents();
   }
 
   updateProject(project) {
-    this.projectService.updateProject(project);
+    this.dataAccessService.updateProject(project);
     this.updateProjectComponents();
   }
 
   deleteProject(project) {
-    this.projectService.deleteProject(project);
+    this.dataAccessService.deleteProject(project);
     this.updateProjectComponents();
   }
 
   getProjects() {
-    return this.projectService.getProjects();
+    return this.dataAccessService.getProjects();
   }
 
   getProjectsArray() {
-    return this.projectService.getProjectsArray();
+    return this.dataAccessService.getProjectsArray();
   }
 }
 
