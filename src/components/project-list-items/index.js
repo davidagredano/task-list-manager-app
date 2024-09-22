@@ -1,6 +1,6 @@
 import Controller from "../../controller";
 
-import { RenameProjectBtn } from "..";
+import { Button, RenameProjectBtn } from "..";
 
 import "./project-list-item.css";
 
@@ -13,7 +13,7 @@ const ProjectListItems = () => {
     const projectItem = document.createElement("li");
     projectItem.className = "project-list__item";
 
-    const projectItemName = document.createElement("span");
+    const projectItemName = Button(project.name, () => controller.updateProjectBoard(project));
     projectItemName.innerText = project.name;
 
     projectItem.appendChild(projectItemName);
