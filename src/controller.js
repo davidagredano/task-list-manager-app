@@ -4,7 +4,7 @@ import { ProjectBoard, ProjectListItems } from "./components";
 
 class Controller {
   constructor() {
-    this.model = new Model();
+    this.model = Model;
   }
 
   initComponent(selector, component) {

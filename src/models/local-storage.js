@@ -5,20 +5,20 @@ const factory = new Factory();
 class Model {
   constructor() {}
 
-  createTask(task) {
+  static createTask(task) {
     const projects = this.getProjects();
     projects[task.projectId].tasks[task.id] = task;
     this.saveProjects(projects);
   }
 
-  toggleTaskCompletion(task) {
+  static toggleTaskCompletion(task) {
     const projects = this.getProjects();
     const targetTask = projects[task.projectId].tasks[task.id];
     targetTask.completed = !targetTask.completed;
     this.saveProjects(projects);
   }
 
-  updateTask(task, newProjectId) {
+  static updateTask(task, newProjectId) {
     const projects = this.getProjects();
 
     if (newProjectId) {
@@ -31,72 +31,72 @@ class Model {
     this.saveProjects(projects);
   }
 
-  deleteTask(task) {
+  static deleteTask(task) {
     const projects = this.getProjects();
     delete projects[task.projectId].tasks[task.id];
     this.saveProjects(projects);
   }
 
-  getTasksArray(projectId) {
+  static getTasksArray(projectId) {
     const projects = this.getProjects();
     const tasks = projects[projectId].tasks;
     return Object.values(tasks);
   }
 
-  createProject(project) {
+  static createProject(project) {
     const projects = this.getProjects();
     projects[project.id] = project;
     this.saveProjects(projects);
   }
 
-  updateProject(project) {
+  static updateProject(project) {
     const projects = this.getProjects();
     projects[project.id] = project;
     this.saveProjects(projects);
   }
 
-  deleteProject(project) {
+  static deleteProject(project) {
     const projects = this.getProjects();
     delete projects[project.id];
     this.saveProjects(projects);
   }
 
-  setDefaultProject() {
+  static setDefaultProject() {
     const defaultProject = factory.createProject("My tasks");
     const projects = {};
     projects[defaultProject.id] = defaultProject;
     this.saveProjects(projects);
   }
 
-  getProjects() {
+  static getProjects() {
     if (localStorage.getItem("projects") === null) {
       this.setDefaultProject();
     }
     return JSON.parse(localStorage.getItem("projects"));
   }
 
-  getProjectsArray() {
+  static getProjectsArray() {
     const projects = this.getProjects();
     return Object.values(projects);
   }
 
-  saveProjects(projects) {
+  static saveProjects(projects) {
     localStorage.setItem("projects", JSON.stringify(projects));
   }
 
-  resetProjects() {
+  static resetProjects() {
     localStorage.removeItem("projects");
   }
 
-  getItemById(arrOfObj, id) {
+  static getItemById(arrOfObj, id) {
     return arrOfObj.find((item) => item.id === id);
   }
 
-  getIndexById(arrOfObj, id) {
+  static getIndexById(arrOfObj, id) {
     return arrOfObj.findIndex((item) => item.id === id);
   }
 
-  deleteItemById(arrOfObj, id) {
+  static deleteItemById(arrOfObj, id) {
     return arrOfObj.filter((item) => item.id !== id);
   }
 }
