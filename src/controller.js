@@ -1,6 +1,6 @@
 import Model from "./models/local-storage";
 
-import { ProjectBoard, ProjectListItems } from "./components";
+import { Project, ProjectBoard, ProjectListItems } from "./components";
 
 class Controller {
   constructor() {
@@ -26,32 +26,36 @@ class Controller {
     this.updateComponent("#project-board-component", ProjectBoard(project));
   }
 
+  updateProjectComponent(project) {
+    this.updateComponent(".project__container", Project(project));
+  }
+
   createTask(task) {
     this.model.createTask(task);
     const projects = this.model.getProjects();
     const project = projects[task.projectId];
-    this.updateProjectBoard(project);
+    this.updateProjectComponent(project);
   }
 
   toggleTaskCompletion(task) {
     this.model.toggleTaskCompletion(task);
     const projects = this.model.getProjects();
     const project = projects[task.projectId];
-    this.updateProjectBoard(project);
+    this.updateProjectComponent(project);
   }
 
   updateTask(task, newProjectId) {
     this.model.updateTask(task, newProjectId);
     const projects = this.model.getProjects();
     const project = projects[task.projectId];
-    this.updateProjectBoard(project);
+    this.updateProjectComponent(project);
   }
 
   deleteTask(task) {
     this.model.deleteTask(task);
     const projects = this.model.getProjects();
     const project = projects[task.projectId];
-    this.updateProjectBoard(project);
+    this.updateProjectComponent(project);
   }
 
   getTasksArray(projectId) {

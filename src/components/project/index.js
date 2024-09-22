@@ -1,6 +1,6 @@
 import Controller from "../../controller";
 
-import { Task, CreateTaskForm, RenameProjectBtn, Div, Button, Title } from "..";
+import { Task, RenameProjectBtn, Div, Button, Title } from "..";
 
 import "./project.css";
 
@@ -29,7 +29,6 @@ const Project = (project) => {
   tasks.forEach((task) => {
     taskList.appendChild(Task(task));
   });
-  article.appendChild(CreateTaskForm(project.id));
 
   return article;
 };

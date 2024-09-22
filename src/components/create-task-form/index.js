@@ -20,15 +20,21 @@ const handleAcceptButton = (projectId) => {
   } else {
     alert("Task title is required");
   }
+
+  document.querySelector(".create-task-form").reset();
 };
 
 const handleCancelButton = () => {
-  return;
+  const form = document.querySelector(".create-task-form");
+  const addTaskBtn = document.querySelector(".project__add-task-btn");
+  form.style.display = "none";
+  addTaskBtn.style.display = "block";
 };
 
 const CreateTaskForm = (projectId) => {
   const form = document.createElement("form");
   form.className = "create-task-form";
+  form.style.display = "none";
 
   const titleInput = Input(
     "create-task-form__input",
