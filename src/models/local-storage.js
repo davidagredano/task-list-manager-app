@@ -2,7 +2,7 @@ import Factory from "../factory";
 
 const factory = new Factory();
 
-class LocalStorageService {
+class Model {
   constructor() {}
 
   createTask(task) {
@@ -101,4 +101,4 @@ class LocalStorageService {
   }
 }
 
-export default LocalStorageService;
+export default Model;

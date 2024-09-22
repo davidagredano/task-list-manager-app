@@ -1,10 +1,10 @@
-import LocalStorageService from "./services/local-storage-service";
+import Model from "./models/local-storage";
 
 import { ProjectBoard, ProjectListItems } from "./components";
 
 class Controller {
   constructor() {
-    this.dataAccessService = new LocalStorageService();
+    this.model = new Model();
   }
 
   initComponent(selector, component) {
@@ -28,50 +28,50 @@ class Controller {
   }
 
   createTask(task) {
-    this.dataAccessService.createTask(task);
+    this.model.createTask(task);
     this.updateTaskComponents();
   }
 
   toggleTaskCompletion(task) {
-    this.dataAccessService.toggleTaskCompletion(task);
+    this.model.toggleTaskCompletion(task);
     this.updateTaskComponents();
   }
 
   updateTask(task, newProjectId) {
-    this.dataAccessService.updateTask(task, newProjectId);
+    this.model.updateTask(task, newProjectId);
     this.updateTaskComponents();
   }
 
   deleteTask(task) {
-    this.dataAccessService.deleteTask(task);
+    this.model.deleteTask(task);
     this.updateTaskComponents();
   }
 
   getTasksArray(projectId) {
-    return this.dataAccessService.getTasksArray(projectId);
+    return this.model.getTasksArray(projectId);
   }
 
   createProject(project) {
-    this.dataAccessService.createProject(project);
+    this.model.createProject(project);
     this.updateProjectComponents();
   }
 
   updateProject(project) {
-    this.dataAccessService.updateProject(project);
+    this.model.updateProject(project);
     this.updateProjectComponents();
   }
 
   deleteProject(project) {
-    this.dataAccessService.deleteProject(project);
+    this.model.deleteProject(project);
     this.updateProjectComponents();
   }
 
   getProjects() {
-    return this.dataAccessService.getProjects();
+    return this.model.getProjects();
   }
 
   getProjectsArray() {
-    return this.dataAccessService.getProjectsArray();
+    return this.model.getProjectsArray();
   }
 }
 

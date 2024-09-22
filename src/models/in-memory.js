@@ -1,4 +1,4 @@
-class InMemoryService {
+class Model {
   #data;
 
   constructor() {
@@ -84,4 +84,4 @@ class InMemoryService {
   }
 }
 
-export default InMemoryService;
+export default Model;
