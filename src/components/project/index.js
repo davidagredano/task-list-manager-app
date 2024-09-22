@@ -7,7 +7,7 @@ import "./project.css";
 const controller = new Controller();
 
 const deleteProjectBtnHandler = (project) =>
-  stateManager.deleteProject(project);
+  controller.deleteProject(project);
 
 const Project = (project) => {
   const article = document.createElement("article");
