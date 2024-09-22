@@ -11,10 +11,6 @@ const editTaskBtnHandler = (task) => {
   dialog.showModal();
 };
 
-const deleteTaskBtnHandler = (task) => {
-  controller.deleteTask(task);
-};
-
 const Description = (task) => {
   const p = document.createElement("p");
   p.className = "task__description";
@@ -41,7 +37,7 @@ const Task = (task) => {
 
   const taskActions = Div("task__actions");
   const editTaskBtn = Button("Edit", () => editTaskBtnHandler(task));
-  const deleteTaskBtn = Button("Delete", () => deleteTaskBtnHandler(task));
+  const deleteTaskBtn = Button("Delete", () => controller.deleteTask(task));
 
   article.appendChild(taskbody);
   taskbody.appendChild(checkbox);

@@ -6,9 +6,6 @@ import "./project.css";
 
 const controller = new Controller();
 
-const deleteProjectBtnHandler = (project) =>
-  controller.deleteProject(project);
-
 const Project = (project) => {
   const article = document.createElement("article");
   article.className = "project";
@@ -19,9 +16,7 @@ const Project = (project) => {
   const title = Title("project__title", project.name);
   const projectActions = Div("project__actions");
   const renameProjectBtn = RenameProjectBtn(project);
-  const deleteProjectBtn = Button("Delete", () =>
-    deleteProjectBtnHandler(project)
-  );
+  const deleteProjectBtn = Button("Delete", () => controller.deleteProject(project));
   const taskList = Div("project__tasks");
   const tasks = controller.getTasksArray(project.id);
 
