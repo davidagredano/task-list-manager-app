@@ -31,6 +31,18 @@ const Task = (task) => {
     () => toggleTaskCompletion(task),
     "task__checkbox"
   );
+  if (task.priority) {
+    checkbox.style.borderWidth = "2px";
+  }
+  if (task.priority === "1") {
+    checkbox.style.borderColor = "red";
+  } else if (task.priority === "2") {
+    checkbox.style.borderColor = "orange";
+  } else if (task.priority === "3") {
+    checkbox.style.borderColor = "blue";
+  } else if (task.priority === "4") {
+    checkbox.style.borderWidth = "1px";
+  }
   const taskContent = Div("task__content");
   const title = Title("task__title", task.title);
   const description = Description(task);
