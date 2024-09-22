@@ -18,33 +18,41 @@ class Controller {
     entryPoint.appendChild(component);
   }
 
-  updateTaskComponents() {
-    this.updateComponent("#project-board-component", ProjectBoard());
+  updateTaskComponents(project) {
+    this.updateComponent("#project-board-component", ProjectBoard(project));
   }
 
-  updateProjectComponents() {
+  updateProjectComponents(project) {
     this.updateComponent("#project-list-component", ProjectListItems());
-    this.updateComponent("#project-board-component", ProjectBoard());
+    this.updateComponent("#project-board-component", ProjectBoard(project));
   }
 
   createTask(task) {
     this.model.createTask(task);
-    this.updateTaskComponents();
+    const projects = this.model.getProjects();
+    const project = projects[task.projectId];
+    this.updateTaskComponents(project);
   }
 
   toggleTaskCompletion(task) {
     this.model.toggleTaskCompletion(task);
-    this.updateTaskComponents();
+    const projects = this.model.getProjects();
+    const project = projects[task.projectId];
+    this.updateTaskComponents(project);
   }
 
   updateTask(task, newProjectId) {
     this.model.updateTask(task, newProjectId);
-    this.updateTaskComponents();
+    const projects = this.model.getProjects();
+    const project = projects[task.projectId];
+    this.updateTaskComponents(project);
   }
 
   deleteTask(task) {
     this.model.deleteTask(task);
-    this.updateTaskComponents();
+    const projects = this.model.getProjects();
+    const project = projects[task.projectId];
+    this.updateTaskComponents(project);
   }
 
   getTasksArray(projectId) {
@@ -53,17 +61,18 @@ class Controller {
 
   createProject(project) {
     this.model.createProject(project);
-    this.updateProjectComponents();
+    this.updateProjectComponents(project);
   }
 
   updateProject(project) {
     this.model.updateProject(project);
-    this.updateProjectComponents();
+    this.updateProjectComponents(project);
   }
 
   deleteProject(project) {
     this.model.deleteProject(project);
-    this.updateProjectComponents();
+    const firstProject = this.model.getProjectsArray()[0];
+    this.updateProjectComponents(firstProject);
   }
 
   getProjects() {

@@ -6,14 +6,11 @@ import "./project-board.css";
 
 const controller = new Controller();
 
-const ProjectBoard = () => {
+const ProjectBoard = (project) => {
   const projectBoard = document.createElement("main");
   projectBoard.className = "project-board";
 
-  const projects = controller.getProjectsArray();
-  projects.forEach((project) => {
-    projectBoard.appendChild(Project(project));
-  });
+  projectBoard.appendChild(Project(project));
 
   return projectBoard;
 };
