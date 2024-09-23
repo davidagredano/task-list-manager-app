@@ -13,11 +13,13 @@ const handleAcceptButton = (projectId) => {
   const title = document.getElementById(titleInputId).value;
   const descriptionInputId = "task-description-input-" + projectId;
   const description = document.getElementById(descriptionInputId).value;
+  const dueDateInputId = "task-due-date-input-" + projectId;
+  const dueDate = document.getElementById(dueDateInputId).value;
   const priorityInputId = "task-priority-input-" + projectId;
   const priority = document.getElementById(priorityInputId).value
 
   if (title) {
-    const task = factory.createTask(title, description, null, priority, projectId);
+    const task = factory.createTask(title, description, dueDate, priority, projectId);
     controller.createTask(task);
   } else {
     alert("Task title is required");
@@ -49,6 +51,13 @@ const CreateTaskForm = (projectId) => {
     "Description"
   );
   const actionsGroup = Div("create-task-form__actions-group");
+  
+  const dueDateInput = document.createElement("input");
+  dueDateInput.type = "date";
+  dueDateInput.className = "create-task-form__input";
+  dueDateInput.id = `task-due-date-input-${projectId}`;
+  dueDateInput.name = "due-date";
+  
   const prioritySelect = document.createElement("select");
   prioritySelect.className = "create-task-form__select";
   prioritySelect.id = `task-priority-input-${projectId}`;
@@ -75,6 +84,7 @@ const CreateTaskForm = (projectId) => {
   form.appendChild(titleInput);
   form.appendChild(descriptionInput);
   form.appendChild(actionsGroup);
+  actionsGroup.appendChild(dueDateInput);
   actionsGroup.appendChild(prioritySelect);
   prioritySelect.appendChild(option0);
   prioritySelect.appendChild(option1);
